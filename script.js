@@ -1,10 +1,10 @@
+let action =0;
+let mental =0;
+
 function startDiagnosis(){
   location.href="question1.html";
 }
 
-
-let action =0;
-let mental =0;
 function q1(answer){
   if(answer ==="a"){
       action +=2;
