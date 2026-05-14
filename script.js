@@ -29,11 +29,16 @@ function q1(answer){
     thinking -=1;
   }
   else if(answer === "d"){ 
-    //起きるのがつらい
-    action -= 1;
-    mental -= 1;
-    future -= 1;
+    //起きない
+    action -= 2;
+    mental -= 2;
+    future -= 2;
+    thinking -=1;
   }
-
+  else if(answer ==='e'){
+    //二度寝
+    action -=1;
+    mental -=1;
+  }
   alert("action=" + action + " mental=" + mental);
 }
