@@ -1,4 +1,4 @@
 function startDiagnosis(){
-  lacation.href="question.html";
+  lacation.href="question1.html";
 
 }
