@@ -42,3 +42,39 @@ function q1(answer){
   }
   alert("action=" + action + " mental=" + mental);
 }
+
+
+function q2(answer){
+  if(answer === "a"){
+    //とりあえず始める
+    action += 3;
+    thinking += 2;
+    future += 1;
+  }
+  else if(answer === "b"){
+    //少し休んでからやる
+    action += 1;
+    thinking +=1;
+    mental +2;
+  }
+  else if(answer === "c"){
+    //先延ばし
+    action -= 1;
+    future -= 2;
+    thinking -=1;
+  }
+  else if(answer === "d"){ 
+    //やる気なし
+    action -= 2;
+    mental -= 2;
+    future -= 1;
+  }
+  else if(answer ==='e'){
+    //別のこと
+    thinking -=1;
+    mental -=1;
+    future -=1;
+    social +=1;
+  }
+  alert("action=" + action + " mental=" + mental);
+}
