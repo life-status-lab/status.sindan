@@ -2,6 +2,9 @@ function startDiagnosis(){
   location.href="question1.html";
 }
 
+
+let action =0;
+let mental =0;
 function q1(answer){
   if(answer ==="a"){
       action +=2;
@@ -17,3 +20,5 @@ function q1(answer){
       action -=1;
       mental -=1;
   }
+  alert("action=" + action + " mental=" + mental); 
+}
