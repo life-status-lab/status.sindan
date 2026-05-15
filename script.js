@@ -16,10 +16,17 @@ function nextQuestion1(){
   location.href = "question2.html";
 }
 
+function nextQuestion2(){
+  location.href = "question3.html";
+}
+
 function befQuestion1(){
    location.href = "question1.html";
 }
 
+function befQuestion2(){
+   location.href = "question2.html";
+}
 
 //
 // =====================
