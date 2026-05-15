@@ -12,6 +12,10 @@ function startDiagnosis(){
   location.href = "question1.html";
 }
 
+function nextQuestion1(){
+  location.href = "question2.html";
+}
+
 //
 // =====================
 // Q1（朝の行動）
