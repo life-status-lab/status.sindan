@@ -16,7 +16,7 @@ function nextQuestion1(){
   location.href = "question2.html";
 }
 
-function befQuestoon1(){
+function befQuestion1(){
    location.href = "question1.html";
 }
 
