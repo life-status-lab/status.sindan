@@ -28,6 +28,9 @@ function befQuestion2(){
    location.href = "question2.html";
 }
 
+function next3(){
+   location.href = "result.html";
+}
 //
 // =====================
 // Q1（朝の行動）
