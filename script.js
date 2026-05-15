@@ -16,6 +16,11 @@ function nextQuestion1(){
   location.href = "question2.html";
 }
 
+function befQuestoon1(){
+   location.href = "question1.html";
+}
+
+
 //
 // =====================
 // Q1（朝の行動）
