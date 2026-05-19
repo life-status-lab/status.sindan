@@ -2,8 +2,8 @@
 <html lang="ja">
 
 <head>
-   <meta charset="UTF-8">
-   <title>Question</title>
+  <meta charset="UTF-8">
+  <title>Question</title>
 </head>
 
 <body>
@@ -14,24 +14,25 @@
     朝の目覚め
   </p>
 
-  <button onclick="q1('a')">目覚めた瞬間、即行動！</button>
-  <button onclick="q1('b')">少しだけ布団でまどろむ</button>
-  <button onclick="q1('c')">魂が戻るまでスマホを見る</button>
-  <button onclick="q1('d')">ギリギリまで粘って爆速準備</button>
-  <button onclick="q1('e')">二度寝の誘惑に勝てない</button>
+  <button class="q1" onclick="q1('a', this)">目覚めた瞬間、即行動！</button>
+  <button class="q1" onclick="q1('b', this)">少しだけ布団でまどろむ</button>
+  <button class="q1" onclick="q1('c', this)">魂が戻るまでスマホを見る</button>
+  <button class="q1" onclick="q1('d', this)">ギリギリまで粘って爆速準備</button>
+  <button class="q1" onclick="q1('e', this)">二度寝の誘惑に勝てない</button>
 
 
   <h1>Q2</h1>
 
   <p>
-     やるべきことがあるのに、気分が乗らない
+    やるべきことがあるのに、気分が乗らない
   </p>
 
-  <button onclick="q2('a')">無心で「とりあえず」始める</button>
-  <button onclick="q2('b')">好きなことで気分を上げてから</button>
-  <button onclick="q2('c')">〆切が迫るまでじっと待つ</button>
-  <button onclick="q2('d')">「明日やる」と言って一日終わる</button>
-  <button onclick="q2('e')">現実逃避で別の掃除とかしちゃう</button>
+  <button class="q2" onclick="q2('a', this)">無心で「とりあえず」始める</button>
+  <button class="q2" onclick="q2('b', this)">好きなことで気分を上げてから</button>
+  <button class="q2" onclick="q2('c', this)">〆切が迫るまでじっと待つ</button>
+  <button class="q2" onclick="q2('d', this)">「明日やる」と言って一日終わる</button>
+  <button class="q2" onclick="q2('e', this)">現実逃避で別の掃除とかしちゃう</button>
+
 
   <h1>Q3</h1>
 
@@ -39,11 +40,12 @@
     最近のハマり具合
   </p>
 
-  <button onclick="q3('a')">寝食を忘れて、ガチ沼へ</button>
-  <button onclick="q3('b')">生活の一部になるくらい</button>
-  <button onclick="q3('c')">広く浅く、ライトに楽しむ</button>
-  <button onclick="q3('d')">三日坊主で、すぐ覚める</button>
-  <button onclick="q3('e')">特に何も。常にフラット</button>
+  <button class="q3" onclick="q3('a', this)">寝食を忘れて、ガチ沼へ</button>
+  <button class="q3" onclick="q3('b', this)">生活の一部になるくらい</button>
+  <button class="q3" onclick="q3('c', this)">広く浅く、ライトに楽しむ</button>
+  <button class="q3" onclick="q3('d', this)">三日坊主で、すぐ覚める</button>
+  <button class="q3" onclick="q3('e', this)">特に何も。常にフラット</button>
+
 
   <h1>Q4</h1>
 
@@ -51,11 +53,12 @@
     スマホとの距離感
   </p>
 
-  <button onclick="q4('a')">決めた時間しか触らない</button>
-  <button onclick="q4('b')">必要な時だけスマートに</button>
-  <button onclick="q4('c')">無意識にスワイプしてる</button>
-  <button onclick="q4('d')">気づくと数時間溶けてる</button>
-  <button onclick="q4('e')">スマホがないと生きていけない</button>
+  <button class="q4" onclick="q4('a', this)">決めた時間しか触らない</button>
+  <button class="q4" onclick="q4('b', this)">必要な時だけスマートに</button>
+  <button class="q4" onclick="q4('c', this)">無意識にスワイプしてる</button>
+  <button class="q4" onclick="q4('d', this)">気づくと数時間溶けてる</button>
+  <button class="q4" onclick="q4('e', this)">スマホがないと生きていけない</button>
+
 
   <h1>Q5</h1>
 
@@ -63,11 +66,12 @@
     友達との付き合い方
   </p>
 
-  <button onclick="q5('a')">賑やかなグループでワイワイ</button>
-  <button onclick="q5('b')">信頼できる数人と深く</button>
-  <button onclick="q5('c')">付かず離れず。ほどよく</button>
-  <button onclick="q5('d')">狭く静かな関係が落ち着く</button>
-  <button onclick="q5('e')">一人の時間が一番のご褒美</button>
+  <button class="q5" onclick="q5('a', this)">賑やかなグループでワイワイ</button>
+  <button class="q5" onclick="q5('b', this)">信頼できる数人と深く</button>
+  <button class="q5" onclick="q5('c', this)">付かず離れず。ほどよく</button>
+  <button class="q5" onclick="q5('d', this)">狭く静かな関係が落ち着く</button>
+  <button class="q5" onclick="q5('e', this)">一人の時間が一番のご褒美</button>
+
 
   <h1>Q6</h1>
 
@@ -75,11 +79,12 @@
     好きな人ができたら
   </p>
 
-  <button onclick="q6('a')">自分から積極的に話しかける</button>
-  <button onclick="q6('b')">共通点を探して徐々に接近</button>
-  <button onclick="q6('c')">相手が来るのをじっと待つ</button>
-  <button onclick="q6('d')">見ているだけで満足しちゃう</button>
-  <button onclick="q6('e')">目が合うと全力で逃げる</button>
+  <button class="q6" onclick="q6('a', this)">自分から積極的に話しかける</button>
+  <button class="q6" onclick="q6('b', this)">共通点を探して徐々に接近</button>
+  <button class="q6" onclick="q6('c', this)">相手が来るのをじっと待つ</button>
+  <button class="q6" onclick="q6('d', this)">見ているだけで満足しちゃう</button>
+  <button class="q6" onclick="q6('e', this)">目が合うと全力で逃げる</button>
+
 
   <h1>Q7</h1>
 
@@ -87,11 +92,12 @@
     タスクへの取り組み
   </p>
 
-  <button onclick="q7('a')">出された瞬間に速攻終わらせる</button>
-  <button onclick="q7('b')">逆算して計画的に進める</button>
-  <button onclick="q7('c')">ギリギリの追い込みに賭ける</button>
-  <button onclick="q7('d')">溜めすぎて山積みになる</button>
-  <button onclick="q7('e')">存在を忘れて放置しがち</button>
+  <button class="q7" onclick="q7('a', this)">出された瞬間に速攻終わらせる</button>
+  <button class="q7" onclick="q7('b', this)">逆算して計画的に進める</button>
+  <button class="q7" onclick="q7('c', this)">ギリギリの追い込みに賭ける</button>
+  <button class="q7" onclick="q7('d', this)">溜めすぎて山積みになる</button>
+  <button class="q7" onclick="q7('e', this)">存在を忘れて放置しがち</button>
+
 
   <h1>Q8</h1>
 
@@ -99,11 +105,12 @@
     メンタル（心の天気）
   </p>
 
-  <button onclick="q8('a')">基本快晴！何があっても平気</button>
-  <button onclick="q8('b')">多少の雨でも、寝れば治る</button>
-  <button onclick="q8('c')">穏やかな曇り。良くも悪くもない</button>
-  <button onclick="q8('d')">些細なことで落ち込みやすい</button>
-  <button onclick="q8('e')">感情の起伏が激しい台風タイプ</button>
+  <button class="q8" onclick="q8('a', this)">基本快晴！何があっても平気</button>
+  <button class="q8" onclick="q8('b', this)">多少の雨でも、寝れば治る</button>
+  <button class="q8" onclick="q8('c', this)">穏やかな曇り。良くも悪くもない</button>
+  <button class="q8" onclick="q8('d', this)">些細なことで落ち込みやすい</button>
+  <button class="q8" onclick="q8('e', this)">感情の起伏が激しい台風タイプ</button>
+
 
   <h1>Q9</h1>
 
@@ -111,11 +118,12 @@
     将来への意識
   </p>
 
-  <button onclick="q9('a')">明確な目標。地図は完成済み</button>
-  <button onclick="q9('b')">「こうなりたい」理想はある</button>
-  <button onclick="q9('c')">未定。今やりたいこと探し中</button>
-  <button onclick="q9('d')">不安だから考えないようにしてる</button>
-  <button onclick="q9('e')">興味なし！今が楽しければOK</button>
+  <button class="q9" onclick="q9('a', this)">明確な目標。地図は完成済み</button>
+  <button class="q9" onclick="q9('b', this)">「こうなりたい」理想はある</button>
+  <button class="q9" onclick="q9('c', this)">未定。今やりたいこと探し中</button>
+  <button class="q9" onclick="q9('d', this)">不安だから考えないようにしてる</button>
+  <button class="q9" onclick="q9('e', this)">興味なし！今が楽しければOK</button>
+
 
   <h1>Q10</h1>
 
@@ -123,17 +131,13 @@
     人間関係のスタイル
   </p>
 
-  <button onclick="q10('a')">全人類が友達候補！誰とでも</button>
-  <button onclick="q10('b')">仲良くなれば驚くほど喋る</button>
-  <button onclick="q10('c')">当たり障りなく、平和に接する</button>
-  <button onclick="q10('d')">特定の数人以外とは話さない</button>
-  <button onclick="q10('e')">他人とのかかわりは最小限でいい</button>
+  <button class="q10" onclick="q10('a', this)">全人類が友達候補！誰とでも</button>
+  <button class="q10" onclick="q10('b', this)">仲良くなれば驚くほど喋る</button>
+  <button class="q10" onclick="q10('c', this)">当たり障りなく、平和に接する</button>
+  <button class="q10" onclick="q10('d', this)">特定の数人以外とは話さない</button>
+  <button class="q10" onclick="q10('e', this)">他人とのかかわりは最小限でいい</button>
 
-  <h2>
-   <button onclick="nextQuestion1()">next question</button>
-  </h2>
-   
   <script src="script.js"></script>
-</body>
 
+</body>
 </html>
