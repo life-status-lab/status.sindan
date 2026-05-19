@@ -6,6 +6,30 @@ let experience = 0;
 
 let answers = {};
 
+function startDiagnosis(){
+  location.href = "question1.html";
+}
+
+function nextQuestion1(){
+  location.href = "question2.html";
+}
+
+function nextQuestion2(){
+  location.href = "question3.html";
+}
+
+function befQuestion1(){
+   location.href = "question1.html";
+}
+
+function befQuestion2(){
+   location.href = "question2.html";
+}
+
+function next3(){
+   location.href = "result.html";
+}
+
 function selectButton(q, button){
 
   let buttons = document.querySelectorAll("." + q);
