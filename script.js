@@ -1,166 +1,172 @@
-let action = 0;
+let speed = 0;
 let mental = 0;
-let social = 0;
-let thinking = 0;
-let future = 0;
+let communication = 0;
+let intelligence = 0;
+let experience = 0;
 
-// 選択保存
-let q1_answer = null;
-let q2_answer = null;
+let answers = {};
 
-function startDiagnosis(){
-  location.href = "question1.html";
+function selectButton(q, button){
+
+  let buttons = document.querySelectorAll("." + q);
+
+  buttons.forEach(btn => {
+    btn.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
 }
 
-function nextQuestion1(){
-  location.href = "question2.html";
+function applyScore(q, answer, scores){
+
+  if(answers[q]){
+
+    let old = scores[answers[q]];
+
+    speed -= old[0];
+    mental -= old[1];
+    communication -= old[2];
+    intelligence -= old[3];
+    experience -= old[4];
+  }
+
+  let now = scores[answer];
+
+  speed += now[0];
+  mental += now[1];
+  communication += now[2];
+  intelligence += now[3];
+  experience += now[4];
+
+  answers[q] = answer;
 }
 
-function nextQuestion2(){
-  location.href = "question3.html";
+function q1(answer, button){
+
+  selectButton("q1", button);
+
+  applyScore("q1", answer, {
+    a:[3,1,0,2,2],
+    b:[1,0,0,1,0],
+    c:[0,0,0,-1,-1],
+    d:[-2,-2,0,-1,-2],
+    e:[-1,-1,0,0,0]
+  });
 }
 
-function befQuestion1(){
-   location.href = "question1.html";
+function q2(answer, button){
+
+  selectButton("q2", button);
+
+  applyScore("q2", answer, {
+    a:[3,0,0,2,1],
+    b:[1,2,0,1,1],
+    c:[-1,0,0,-1,-2],
+    d:[-2,-2,0,0,-1],
+    e:[0,-1,1,0,0]
+  });
 }
 
-function befQuestion2(){
-   location.href = "question2.html";
+function q3(answer, button){
+
+  selectButton("q3", button);
+
+  applyScore("q3", answer, {
+    a:[2,1,0,0,3],
+    b:[1,1,0,0,2],
+    c:[0,0,1,0,1],
+    d:[-1,0,0,-1,-1],
+    e:[-2,-1,0,0,-2]
+  });
 }
 
-function next3(){
-   location.href = "result.html";
-}
-//
-// =====================
-// Q1（朝の行動）
-// =====================
-//
-function q1(answer){
+function q4(answer, button){
 
-  // ① まず前の選択を取り消す
-  if (q1_answer === "a"){
-    action -= 3;
-    thinking -= 2;
-    future -= 2;
-    mental -= 1;
-  }
-  else if (q1_answer === "b"){
-    action -= 1;
-    thinking -= 1;
-  }
-  else if (q1_answer === "c"){
-    thinking += 1;
-    future += 1;
-  }
-  else if (q1_answer === "d"){
-    action += 2;
-    mental += 2;
-    future += 2;
-    thinking += 1;
-  }
-  else if (q1_answer === "e"){
-    action += 1;
-    mental += 1;
-  }
+  selectButton("q4", button);
 
-  // ② 新しい選択を加算
-  if (answer === "a"){
-    action += 3;
-    thinking += 2;
-    future += 2;
-    mental += 1;
-  }
-  else if (answer === "b"){
-    action += 1;
-    thinking += 1;
-  }
-  else if (answer === "c"){
-    thinking -= 1;
-    future -= 1;
-  }
-  else if (answer === "d"){
-    action -= 2;
-    mental -= 2;
-    future -= 2;
-    thinking -= 1;
-  }
-  else if (answer === "e"){
-    action -= 1;
-    mental -= 1;
-  }
-
-  // ③ 保存
-  q1_answer = answer;
-
-  console.log("Q1更新", action, mental, thinking, future, social);
+  applyScore("q4", answer, {
+    a:[2,1,0,2,1],
+    b:[1,0,0,1,0],
+    c:[0,-1,0,-1,-1],
+    d:[-1,-2,0,-2,-2],
+    e:[-2,-2,0,-2,-2]
+  });
 }
 
-//
-// =====================
-// Q2（やる気・先延ばし）
-// =====================
-//
-function q2(answer){
+function q5(answer, button){
 
-  // ① 前の選択を取り消す
-  if (q2_answer === "a"){
-    action -= 3;
-    thinking -= 2;
-    future -= 1;
-  }
-  else if (q2_answer === "b"){
-    action -= 1;
-    thinking -= 1;
-    mental -= 2;
-  }
-  else if (q2_answer === "c"){
-    action += 1;
-    future += 2;
-    thinking += 1;
-  }
-  else if (q2_answer === "d"){
-    action += 2;
-    mental += 2;
-    future += 1;
-  }
-  else if (q2_answer === "e"){
-    thinking += 1;
-    mental += 1;
-    future += 1;
-    social -= 1;
-  }
+  selectButton("q5", button);
 
-  // ② 新しい選択を加算
-  if (answer === "a"){
-    action += 3;
-    thinking += 2;
-    future += 1;
-  }
-  else if (answer === "b"){
-    action += 1;
-    thinking += 1;
-    mental += 2;
-  }
-  else if (answer === "c"){
-    action -= 1;
-    future -= 2;
-    thinking -= 1;
-  }
-  else if (answer === "d"){
-    action -= 2;
-    mental -= 2;
-    future -= 1;
-  }
-  else if (answer === "e"){
-    thinking -= 1;
-    mental -= 1;
-    future -= 1;
-    social += 1;
-  }
+  applyScore("q5", answer, {
+    a:[1,1,3,0,2],
+    b:[0,1,2,0,2],
+    c:[0,0,1,0,0],
+    d:[-1,0,-1,0,-1],
+    e:[-2,0,-2,0,-1]
+  });
+}
 
-  // ③ 保存
-  q2_answer = answer;
+function q6(answer, button){
 
-  console.log("Q2更新", action, mental, thinking, future, social);
+  selectButton("q6", button);
+
+  applyScore("q6", answer, {
+    a:[2,1,3,0,2],
+    b:[1,1,2,1,1],
+    c:[0,0,0,0,0],
+    d:[-1,-1,-1,0,-1],
+    e:[-2,-2,-2,0,-1]
+  });
+}
+
+function q7(answer, button){
+
+  selectButton("q7", button);
+
+  applyScore("q7", answer, {
+    a:[3,1,0,2,2],
+    b:[2,0,0,3,2],
+    c:[1,-1,0,0,0],
+    d:[-2,-1,0,-1,-2],
+    e:[-3,-1,0,-2,-3]
+  });
+}
+
+function q8(answer, button){
+
+  selectButton("q8", button);
+
+  applyScore("q8", answer, {
+    a:[1,3,1,0,1],
+    b:[0,2,0,0,0],
+    c:[0,0,0,0,0],
+    d:[-1,-2,0,-1,-1],
+    e:[-2,-3,0,-1,-1]
+  });
+}
+
+function q9(answer, button){
+
+  selectButton("q9", button);
+
+  applyScore("q9", answer, {
+    a:[2,1,0,2,3],
+    b:[1,1,0,1,2],
+    c:[0,0,0,0,0],
+    d:[-1,-2,0,-1,-2],
+    e:[-2,-1,0,-2,-2]
+  });
+}
+
+function q10(answer, button){
+
+  selectButton("q10", button);
+
+  applyScore("q10", answer, {
+    a:[2,1,3,0,2],
+    b:[1,1,2,0,1],
+    c:[0,0,1,0,0],
+    d:[-1,0,-1,0,-1],
+    e:[-2,0,-2,0,-1]
+  });
 }
