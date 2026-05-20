@@ -193,4 +193,134 @@ function q10(answer, button){
     d:[-1,0,-1,0,-1],
     e:[-2,0,-2,0,-1]
   });
+
+  function q11(answer, button){
+
+  selectButton("q11", button);
+
+  applyScore("q11", answer, {
+    a:[3,2,2,0,3],
+    b:[2,2,1,0,2],
+    c:[0,1,0,0,0],
+    d:[-1,-1,0,-1,-1],
+    e:[-2,-2,0,-1,-2]
+  });
+}
+
+function q12(answer, button){
+
+  selectButton("q12", button);
+
+  applyScore("q12", answer, {
+    a:[3,1,1,1,3],
+    b:[1,0,0,3,2],
+    c:[1,1,1,0,1],
+    d:[-1,-1,0,-1,-1],
+    e:[-2,-2,0,-1,-2]
+  });
+}
+
+function q13(answer, button){
+
+  selectButton("q13", button);
+
+  applyScore("q13", answer, {
+    a:[1,1,3,0,2],
+    b:[0,0,1,1,1],
+    c:[0,1,0,0,0],
+    d:[-1,-1,0,-1,-1],
+    e:[0,2,-1,1,0]
+  });
+}
+
+function q14(answer, button){
+
+  selectButton("q14", button);
+
+  applyScore("q14", answer, {
+    a:[2,3,0,1,3],
+    b:[1,1,0,2,2],
+    c:[0,0,0,0,0],
+    d:[-1,-2,0,-1,-1],
+    e:[-2,-3,0,-1,-2]
+  });
+}
+
+function q15(answer, button){
+
+  selectButton("q15", button);
+
+  applyScore("q15", answer, {
+    a:[3,1,3,0,2],
+    b:[1,0,1,2,1],
+    c:[0,0,1,0,0],
+    d:[-1,-1,-1,0,-1],
+    e:[-2,0,-2,0,-2]
+  });
+}
+
+function q16(answer, button){
+
+  selectButton("q16", button);
+
+  applyScore("q16", answer, {
+    a:[2,1,3,1,2],
+    b:[1,1,2,1,1],
+    c:[0,0,1,0,0],
+    d:[-1,0,-1,0,-1],
+    e:[-2,0,-2,0,-2]
+  });
+}
+
+function q17(answer, button){
+
+  selectButton("q17", button);
+
+  applyScore("q17", answer, {
+    a:[2,1,3,0,3],
+    b:[1,1,2,1,2],
+    c:[0,0,0,0,0],
+    d:[-1,-1,-1,0,-1],
+    e:[-2,-2,-2,0,-2]
+  });
+}
+
+function q18(answer, button){
+
+  selectButton("q18", button);
+
+  applyScore("q18", answer, {
+    a:[2,2,0,2,3],
+    b:[1,1,0,1,2],
+    c:[1,0,0,0,1],
+    d:[-1,-1,0,-1,-1],
+    e:[-2,-2,0,-2,-2]
+  });
+}
+
+function q19(answer, button){
+
+  selectButton("q19", button);
+
+  applyScore("q19", answer, {
+    a:[3,1,1,0,2],
+    b:[1,1,0,3,2],
+    c:[0,1,0,0,0],
+    d:[-1,-1,1,0,-1],
+    e:[-2,0,-1,-1,-2]
+  });
+}
+
+function q20(answer, button){
+
+  selectButton("q20", button);
+
+  applyScore("q20", answer, {
+    a:[2,1,0,2,2],
+    b:[1,0,0,1,1],
+    c:[0,0,0,0,0],
+    d:[-1,-1,0,-1,-1],
+    e:[-2,-2,0,-2,-2]
+  });
+}
 }
