@@ -1,147 +1,387 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
-  <title>Question</title>
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STATUS診断 - Q1〜10</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFE54C;
+      --pink:   #FF6BB5;
+      --blue:   #4CC9FF;
+      --green:  #4CFFA0;
+      --orange: #FF8C42;
+      --purple: #C97BFF;
+      --bg:     #FFF8EC;
+      --ink:    #1A1A2E;
+      --card:   #FFFFFF;
+      --border: 3px solid var(--ink);
+      --shadow: 5px 5px 0px var(--ink);
+      --radius: 20px;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle, #FFE54C44 1px, transparent 1px),
+        radial-gradient(circle, #FF6BB522 1px, transparent 1px);
+      background-size: 32px 32px, 16px 16px;
+      background-position: 0 0, 8px 8px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+    }
+
+    /* ---- progress ---- */
+    .progress-wrap {
+      max-width: 480px;
+      margin: 0 auto 24px;
+      animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .progress-label .pg-title {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 13px;
+    }
+    .progress-label .pg-num {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--ink);
+      color: var(--yellow);
+      padding: 2px 10px;
+      border-radius: 99px;
+    }
+    .progress-track {
+      height: 10px;
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 33%;
+      background: linear-gradient(90deg, var(--pink), var(--orange));
+      border-radius: 99px;
+      transition: width .4s;
+    }
+
+    /* ---- question card ---- */
+    .q-card {
+      max-width: 480px;
+      margin: 0 auto 20px;
+      background: var(--card);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: popIn .45s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .q-card:nth-child(2)  { animation-delay: .02s; }
+    .q-card:nth-child(3)  { animation-delay: .04s; }
+    .q-card:nth-child(4)  { animation-delay: .06s; }
+    .q-card:nth-child(5)  { animation-delay: .08s; }
+    .q-card:nth-child(6)  { animation-delay: .10s; }
+    .q-card:nth-child(7)  { animation-delay: .12s; }
+    .q-card:nth-child(8)  { animation-delay: .14s; }
+    .q-card:nth-child(9)  { animation-delay: .16s; }
+    .q-card:nth-child(10) { animation-delay: .18s; }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: var(--border);
+      background: var(--yellow);
+    }
+    .q-num {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .q-text {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .q-choices {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform .1s, box-shadow .1s, background .1s;
+      box-shadow: 3px 3px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .choice-btn .choice-label {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 12px;
+      background: var(--ink);
+      color: var(--yellow);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .choice-btn:hover {
+      background: #fff;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .choice-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+    .choice-btn.selected {
+      background: var(--yellow);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .choice-btn.selected .choice-label {
+      background: var(--pink);
+    }
+
+    /* ---- next button ---- */
+    .next-wrap {
+      max-width: 480px;
+      margin: 8px auto 0;
+      animation: popIn .5s .2s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .next-btn {
+      display: block;
+      width: 100%;
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 17px;
+      text-align: center;
+      padding: 15px;
+      background: var(--pink);
+      color: #fff;
+      border: var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .next-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    /* ---- back link ---- */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #888;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.88) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)   translateY(0);    }
+    }
+  </style>
+</head>
 <body>
 
-  <h1>Q1</h1>
+  <!-- プログレス -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span class="pg-title">✦ PART 1 / 3</span>
+      <span class="pg-num">Q1〜10</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
 
-  <p>
-    朝の目覚め
-  </p>
+  <!-- Q1 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q1</span>
+      <span class="q-text">朝の目覚め</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q1" onclick="q1('a', this)"><span class="choice-label">A</span>目覚めた瞬間、即行動！</button>
+      <button class="choice-btn q1" onclick="q1('b', this)"><span class="choice-label">B</span>少しだけ布団でまどろむ</button>
+      <button class="choice-btn q1" onclick="q1('c', this)"><span class="choice-label">C</span>魂が戻るまでスマホを見る</button>
+      <button class="choice-btn q1" onclick="q1('d', this)"><span class="choice-label">D</span>ギリギリまで粘って爆速準備</button>
+      <button class="choice-btn q1" onclick="q1('e', this)"><span class="choice-label">E</span>二度寝の誘惑に勝てない</button>
+    </div>
+  </div>
 
-  <button class="q1" onclick="q1('a', this)">目覚めた瞬間、即行動！</button>
-  <button class="q1" onclick="q1('b', this)">少しだけ布団でまどろむ</button>
-  <button class="q1" onclick="q1('c', this)">魂が戻るまでスマホを見る</button>
-  <button class="q1" onclick="q1('d', this)">ギリギリまで粘って爆速準備</button>
-  <button class="q1" onclick="q1('e', this)">二度寝の誘惑に勝てない</button>
+  <!-- Q2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q2</span>
+      <span class="q-text">やるべきことがあるのに、気分が乗らない</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q2" onclick="q2('a', this)"><span class="choice-label">A</span>無心で「とりあえず」始める</button>
+      <button class="choice-btn q2" onclick="q2('b', this)"><span class="choice-label">B</span>好きなことで気分を上げてから</button>
+      <button class="choice-btn q2" onclick="q2('c', this)"><span class="choice-label">C</span>〆切が迫るまでじっと待つ</button>
+      <button class="choice-btn q2" onclick="q2('d', this)"><span class="choice-label">D</span>「明日やる」と言って一日終わる</button>
+      <button class="choice-btn q2" onclick="q2('e', this)"><span class="choice-label">E</span>現実逃避で別の掃除とかしちゃう</button>
+    </div>
+  </div>
 
+  <!-- Q3 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q3</span>
+      <span class="q-text">最近のハマり具合</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q3" onclick="q3('a', this)"><span class="choice-label">A</span>寝食を忘れて、ガチ沼へ</button>
+      <button class="choice-btn q3" onclick="q3('b', this)"><span class="choice-label">B</span>生活の一部になるくらい</button>
+      <button class="choice-btn q3" onclick="q3('c', this)"><span class="choice-label">C</span>広く浅く、ライトに楽しむ</button>
+      <button class="choice-btn q3" onclick="q3('d', this)"><span class="choice-label">D</span>三日坊主で、すぐ覚める</button>
+      <button class="choice-btn q3" onclick="q3('e', this)"><span class="choice-label">E</span>特に何も。常にフラット</button>
+    </div>
+  </div>
 
-  <h1>Q2</h1>
+  <!-- Q4 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q4</span>
+      <span class="q-text">スマホとの距離感</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q4" onclick="q4('a', this)"><span class="choice-label">A</span>決めた時間しか触らない</button>
+      <button class="choice-btn q4" onclick="q4('b', this)"><span class="choice-label">B</span>必要な時だけスマートに</button>
+      <button class="choice-btn q4" onclick="q4('c', this)"><span class="choice-label">C</span>無意識にスワイプしてる</button>
+      <button class="choice-btn q4" onclick="q4('d', this)"><span class="choice-label">D</span>気づくと数時間溶けてる</button>
+      <button class="choice-btn q4" onclick="q4('e', this)"><span class="choice-label">E</span>スマホがないと生きていけない</button>
+    </div>
+  </div>
 
-  <p>
-    やるべきことがあるのに、気分が乗らない
-  </p>
+  <!-- Q5 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q5</span>
+      <span class="q-text">友達との付き合い方</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q5" onclick="q5('a', this)"><span class="choice-label">A</span>賑やかなグループでワイワイ</button>
+      <button class="choice-btn q5" onclick="q5('b', this)"><span class="choice-label">B</span>信頼できる数人と深く</button>
+      <button class="choice-btn q5" onclick="q5('c', this)"><span class="choice-label">C</span>付かず離れず。ほどよく</button>
+      <button class="choice-btn q5" onclick="q5('d', this)"><span class="choice-label">D</span>狭く静かな関係が落ち着く</button>
+      <button class="choice-btn q5" onclick="q5('e', this)"><span class="choice-label">E</span>一人の時間が一番のご褒美</button>
+    </div>
+  </div>
 
-  <button class="q2" onclick="q2('a', this)">無心で「とりあえず」始める</button>
-  <button class="q2" onclick="q2('b', this)">好きなことで気分を上げてから</button>
-  <button class="q2" onclick="q2('c', this)">〆切が迫るまでじっと待つ</button>
-  <button class="q2" onclick="q2('d', this)">「明日やる」と言って一日終わる</button>
-  <button class="q2" onclick="q2('e', this)">現実逃避で別の掃除とかしちゃう</button>
+  <!-- Q6 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q6</span>
+      <span class="q-text">好きな人ができたら</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q6" onclick="q6('a', this)"><span class="choice-label">A</span>自分から積極的に話しかける</button>
+      <button class="choice-btn q6" onclick="q6('b', this)"><span class="choice-label">B</span>共通点を探して徐々に接近</button>
+      <button class="choice-btn q6" onclick="q6('c', this)"><span class="choice-label">C</span>相手が来るのをじっと待つ</button>
+      <button class="choice-btn q6" onclick="q6('d', this)"><span class="choice-label">D</span>見ているだけで満足しちゃう</button>
+      <button class="choice-btn q6" onclick="q6('e', this)"><span class="choice-label">E</span>目が合うと全力で逃げる</button>
+    </div>
+  </div>
 
+  <!-- Q7 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q7</span>
+      <span class="q-text">タスクへの取り組み</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q7" onclick="q7('a', this)"><span class="choice-label">A</span>出された瞬間に速攻終わらせる</button>
+      <button class="choice-btn q7" onclick="q7('b', this)"><span class="choice-label">B</span>逆算して計画的に進める</button>
+      <button class="choice-btn q7" onclick="q7('c', this)"><span class="choice-label">C</span>ギリギリの追い込みに賭ける</button>
+      <button class="choice-btn q7" onclick="q7('d', this)"><span class="choice-label">D</span>溜めすぎて山積みになる</button>
+      <button class="choice-btn q7" onclick="q7('e', this)"><span class="choice-label">E</span>存在を忘れて放置しがち</button>
+    </div>
+  </div>
 
-  <h1>Q3</h1>
+  <!-- Q8 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q8</span>
+      <span class="q-text">メンタル（心の天気）</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q8" onclick="q8('a', this)"><span class="choice-label">A</span>基本快晴！何があっても平気</button>
+      <button class="choice-btn q8" onclick="q8('b', this)"><span class="choice-label">B</span>多少の雨でも、寝れば治る</button>
+      <button class="choice-btn q8" onclick="q8('c', this)"><span class="choice-label">C</span>穏やかな曇り。良くも悪くもない</button>
+      <button class="choice-btn q8" onclick="q8('d', this)"><span class="choice-label">D</span>些細なことで落ち込みやすい</button>
+      <button class="choice-btn q8" onclick="q8('e', this)"><span class="choice-label">E</span>感情の起伏が激しい台風タイプ</button>
+    </div>
+  </div>
 
-  <p>
-    最近のハマり具合
-  </p>
+  <!-- Q9 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q9</span>
+      <span class="q-text">将来への意識</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q9" onclick="q9('a', this)"><span class="choice-label">A</span>明確な目標。地図は完成済み</button>
+      <button class="choice-btn q9" onclick="q9('b', this)"><span class="choice-label">B</span>「こうなりたい」理想はある</button>
+      <button class="choice-btn q9" onclick="q9('c', this)"><span class="choice-label">C</span>未定。今やりたいこと探し中</button>
+      <button class="choice-btn q9" onclick="q9('d', this)"><span class="choice-label">D</span>不安だから考えないようにしてる</button>
+      <button class="choice-btn q9" onclick="q9('e', this)"><span class="choice-label">E</span>興味なし！今が楽しければOK</button>
+    </div>
+  </div>
 
-  <button class="q3" onclick="q3('a', this)">寝食を忘れて、ガチ沼へ</button>
-  <button class="q3" onclick="q3('b', this)">生活の一部になるくらい</button>
-  <button class="q3" onclick="q3('c', this)">広く浅く、ライトに楽しむ</button>
-  <button class="q3" onclick="q3('d', this)">三日坊主で、すぐ覚める</button>
-  <button class="q3" onclick="q3('e', this)">特に何も。常にフラット</button>
+  <!-- Q10 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q10</span>
+      <span class="q-text">人間関係のスタイル</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q10" onclick="q10('a', this)"><span class="choice-label">A</span>全人類が友達候補！誰とでも</button>
+      <button class="choice-btn q10" onclick="q10('b', this)"><span class="choice-label">B</span>仲良くなれば驚くほど喋る</button>
+      <button class="choice-btn q10" onclick="q10('c', this)"><span class="choice-label">C</span>当たり障りなく、平和に接する</button>
+      <button class="choice-btn q10" onclick="q10('d', this)"><span class="choice-label">D</span>特定の数人以外とは話さない</button>
+      <button class="choice-btn q10" onclick="q10('e', this)"><span class="choice-label">E</span>他人とのかかわりは最小限でいい</button>
+    </div>
+  </div>
 
-
-  <h1>Q4</h1>
-
-  <p>
-    スマホとの距離感
-  </p>
-
-  <button class="q4" onclick="q4('a', this)">決めた時間しか触らない</button>
-  <button class="q4" onclick="q4('b', this)">必要な時だけスマートに</button>
-  <button class="q4" onclick="q4('c', this)">無意識にスワイプしてる</button>
-  <button class="q4" onclick="q4('d', this)">気づくと数時間溶けてる</button>
-  <button class="q4" onclick="q4('e', this)">スマホがないと生きていけない</button>
-
-
-  <h1>Q5</h1>
-
-  <p>
-    友達との付き合い方
-  </p>
-
-  <button class="q5" onclick="q5('a', this)">賑やかなグループでワイワイ</button>
-  <button class="q5" onclick="q5('b', this)">信頼できる数人と深く</button>
-  <button class="q5" onclick="q5('c', this)">付かず離れず。ほどよく</button>
-  <button class="q5" onclick="q5('d', this)">狭く静かな関係が落ち着く</button>
-  <button class="q5" onclick="q5('e', this)">一人の時間が一番のご褒美</button>
-
-
-  <h1>Q6</h1>
-
-  <p>
-    好きな人ができたら
-  </p>
-
-  <button class="q6" onclick="q6('a', this)">自分から積極的に話しかける</button>
-  <button class="q6" onclick="q6('b', this)">共通点を探して徐々に接近</button>
-  <button class="q6" onclick="q6('c', this)">相手が来るのをじっと待つ</button>
-  <button class="q6" onclick="q6('d', this)">見ているだけで満足しちゃう</button>
-  <button class="q6" onclick="q6('e', this)">目が合うと全力で逃げる</button>
-
-
-  <h1>Q7</h1>
-
-  <p>
-    タスクへの取り組み
-  </p>
-
-  <button class="q7" onclick="q7('a', this)">出された瞬間に速攻終わらせる</button>
-  <button class="q7" onclick="q7('b', this)">逆算して計画的に進める</button>
-  <button class="q7" onclick="q7('c', this)">ギリギリの追い込みに賭ける</button>
-  <button class="q7" onclick="q7('d', this)">溜めすぎて山積みになる</button>
-  <button class="q7" onclick="q7('e', this)">存在を忘れて放置しがち</button>
-
-
-  <h1>Q8</h1>
-
-  <p>
-    メンタル（心の天気）
-  </p>
-
-  <button class="q8" onclick="q8('a', this)">基本快晴！何があっても平気</button>
-  <button class="q8" onclick="q8('b', this)">多少の雨でも、寝れば治る</button>
-  <button class="q8" onclick="q8('c', this)">穏やかな曇り。良くも悪くもない</button>
-  <button class="q8" onclick="q8('d', this)">些細なことで落ち込みやすい</button>
-  <button class="q8" onclick="q8('e', this)">感情の起伏が激しい台風タイプ</button>
-
-
-  <h1>Q9</h1>
-
-  <p>
-    将来への意識
-  </p>
-
-  <button class="q9" onclick="q9('a', this)">明確な目標。地図は完成済み</button>
-  <button class="q9" onclick="q9('b', this)">「こうなりたい」理想はある</button>
-  <button class="q9" onclick="q9('c', this)">未定。今やりたいこと探し中</button>
-  <button class="q9" onclick="q9('d', this)">不安だから考えないようにしてる</button>
-  <button class="q9" onclick="q9('e', this)">興味なし！今が楽しければOK</button>
-
-
-  <h1>Q10</h1>
-
-  <p>
-    人間関係のスタイル
-  </p>
-
-  <button class="q10" onclick="q10('a', this)">全人類が友達候補！誰とでも</button>
-  <button class="q10" onclick="q10('b', this)">仲良くなれば驚くほど喋る</button>
-  <button class="q10" onclick="q10('c', this)">当たり障りなく、平和に接する</button>
-  <button class="q10" onclick="q10('d', this)">特定の数人以外とは話さない</button>
-  <button class="q10" onclick="q10('e', this)">他人とのかかわりは最小限でいい</button>
+  <div class="next-wrap">
+    <button class="next-btn" onclick="nextQuestion1()">次のページへ →</button>
+    <span class="back-link" onclick="location.href='index.html'">← トップに戻る</span>
+  </div>
 
   <script src="script.js"></script>
-
-   <h2>
-   <button onclick="nextQuestion1()">next question</button>
-  </h2>
-
 </body>
 </html>
