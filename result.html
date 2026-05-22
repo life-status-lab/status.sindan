@@ -641,7 +641,29 @@ window.addEventListener('DOMContentLoaded', () => {
     `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${shareText}`;
 
   launchConfetti();
+
+  // 統計データをGASに送信（ユーザーには見えない）
+  sendToGAS(result, h);
 });
+
+function sendToGAS(result, hensachi) {
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxn8vsZSN6S_fOq8rHqmIbI6ZzoEPvqhtWlSYQPsICMyuBUUjpNA4sYWlFCeI6G-OYxCQ/exec';
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chara:    result.name,
+      type:     result.type,
+      hensachi: hensachi,
+      speed:    speed,
+      mental:   mental,
+      comm:     communication,
+      intel:    intelligence,
+      exp:      experience,
+    })
+  }).catch(() => {});
+}
 </script>
 </body>
 </html>
