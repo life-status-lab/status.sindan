@@ -453,3 +453,205 @@ function q30(answer, button){
     e:[0,2,0,0,2]
   });
 }
+// ==============================
+// キャラクター分類ロジック
+// ==============================
+// スコア変数: speed, mental, communication, intelligence, experience
+// 条件: ↑ = 以上, 以下 = 以下, - = 条件なし（判定に含めない）
+
+const CHARACTERS = [
+  {
+    name: "チャレン", type: "主人公型",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 20 },
+      { stat: "mental",        op: ">=", val: 0  },
+      // communication: なし
+      { stat: "intelligence",  op: ">=", val: 5  },
+      { stat: "experience",    op: ">=", val: 15 },
+    ]
+  },
+  {
+    name: "フレア", type: "衝動型",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 25 },
+      // mental: なし
+      // communication: なし
+      { stat: "intelligence",  op: "<=", val: 0  },
+      { stat: "experience",    op: ">=", val: 10 },
+    ]
+  },
+  {
+    name: "ラッシュ", type: "暴走型",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 30 },
+      { stat: "mental",        op: "<=", val: -5 },
+      // communication: なし
+      // intelligence: なし
+      { stat: "experience",    op: ">=", val: 20 },
+    ]
+  },
+  {
+    name: "ヨルミー", type: "夜型",
+    conditions: [
+      // speed: なし
+      { stat: "mental",        op: ">=", val: 25 },
+      { stat: "communication", op: "<=", val: 0  },
+      { stat: "intelligence",  op: ">=", val: 15 },
+      // experience: なし
+    ]
+  },
+  {
+    name: "ユラ", type: "情緒揺れ",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 5  },
+      { stat: "mental",        op: ">=", val: 20 },
+      { stat: "communication", op: ">=", val: 10 },
+      // intelligence: なし
+      // experience: なし
+    ]
+  },
+  {
+    name: "ヤミィ", type: "闇抱え込み",
+    conditions: [
+      { stat: "speed",         op: "<=", val: -10 },
+      { stat: "mental",        op: ">=", val: 30  },
+      { stat: "communication", op: "<=", val: -10 },
+      { stat: "intelligence",  op: ">=", val: 10  },
+      // experience: なし
+    ]
+  },
+  {
+    name: "キュルン", type: "愛され型",
+    conditions: [
+      // speed: なし
+      { stat: "mental",        op: ">=", val: 15 },
+      { stat: "communication", op: ">=", val: 25 },
+      // intelligence: なし
+      { stat: "experience",    op: ">=", val: 5  },
+    ]
+  },
+  {
+    name: "ポカリン", type: "陽キャ型",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 10 },
+      { stat: "mental",        op: ">=", val: 10 },
+      { stat: "communication", op: ">=", val: 20 },
+      // intelligence: なし
+      { stat: "experience",    op: ">=", val: 10 },
+    ]
+  },
+  {
+    name: "ミナモ", type: "空気読み",
+    conditions: [
+      // speed: なし
+      { stat: "mental",        op: ">=", val: 20 },
+      { stat: "communication", op: ">=", val: 20 },
+      { stat: "intelligence",  op: ">=", val: 10 },
+      // experience: なし
+    ]
+  },
+  {
+    name: "ツムリィ", type: "考察型",
+    conditions: [
+      { stat: "speed",         op: "<=", val: -5 },
+      { stat: "mental",        op: ">=", val: 15 },
+      { stat: "communication", op: "<=", val: -5 },
+      { stat: "intelligence",  op: ">=", val: 30 },
+      // experience: なし
+    ]
+  },
+  {
+    name: "ロギ", type: "合理主義",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 5  },
+      { stat: "mental",        op: "<=", val: -10 },
+      // communication: なし
+      { stat: "intelligence",  op: ">=", val: 25 },
+      // experience: なし
+    ]
+  },
+  {
+    name: "ノート", type: "記録者",
+    conditions: [
+      // speed: なし
+      { stat: "mental",        op: ">=", val: 5  },
+      // communication: なし
+      { stat: "intelligence",  op: ">=", val: 20 },
+      { stat: "experience",    op: ">=", val: 20 },
+    ]
+  },
+  {
+    name: "キョロリ", type: "好奇心",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 15 },
+      // mental: なし
+      { stat: "communication", op: ">=", val: 10 },
+      { stat: "intelligence",  op: ">=", val: 5  },
+      { stat: "experience",    op: ">=", val: 25 },
+    ]
+  },
+  {
+    name: "ワンダ", type: "冒険家",
+    conditions: [
+      { stat: "speed",         op: ">=", val: 20 },
+      { stat: "mental",        op: ">=", val: 5  },
+      // communication: なし
+      // intelligence: なし
+      { stat: "experience",    op: ">=", val: 30 },
+    ]
+  },
+  {
+    name: "ハコベ", type: "収集家",
+    conditions: [
+      // speed: なし
+      { stat: "mental",        op: ">=", val: 0  },
+      // communication: なし
+      { stat: "intelligence",  op: ">=", val: 15 },
+      { stat: "experience",    op: ">=", val: 25 },
+    ]
+  },
+];
+
+/**
+ * 1つの条件を評価する
+ */
+function checkCondition(condition) {
+  const scores = { speed, mental, communication, intelligence, experience };
+  const val = scores[condition.stat];
+  if (condition.op === ">=") return val >= condition.val;
+  if (condition.op === "<=") return val <= condition.val;
+  return false;
+}
+
+/**
+ * キャラクターを診断して返す
+ * - 条件を満たした数が最も多いキャラを返す
+ * - 同点の場合は配列の先頭（優先度）を返す
+ * @returns {{ name: string, type: string, matchCount: number }}
+ */
+function diagnoseCharacter() {
+  let best = null;
+  let bestCount = -1;
+
+  for (const chara of CHARACTERS) {
+    const count = chara.conditions.filter(c => checkCondition(c)).length;
+    if (count > bestCount) {
+      bestCount = count;
+      best = chara;
+    }
+  }
+
+  return {
+    name: best.name,
+    type: best.type,
+    matchCount: bestCount,
+  };
+}
+
+/**
+ * result.html などで呼び出す例:
+ *
+ *   const result = diagnoseCharacter();
+ *   document.getElementById("chara-name").textContent = result.name;
+ *   document.getElementById("chara-type").textContent = result.type;
+ */
