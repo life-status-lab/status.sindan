@@ -193,7 +193,7 @@ function q10(answer, button){
     d:[-1,0,-1,0,-1],
     e:[-2,0,-2,0,-1]
   });
-
+}
   function q11(answer, button){
 
   selectButton("q11", button);
@@ -452,5 +452,4 @@ function q30(answer, button){
     d:[1,-1,0,1,1],
     e:[0,2,0,0,2]
   });
-}
 }
