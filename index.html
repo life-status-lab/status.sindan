@@ -40,7 +40,6 @@
       padding: 40px 16px 60px;
     }
 
-    /* ---- floating deco ---- */
     .deco {
       position: fixed;
       font-size: 28px;
@@ -48,12 +47,12 @@
       pointer-events: none;
       animation: floatDeco linear infinite;
     }
-    .deco:nth-child(1)  { top: 8%;  left: 6%;  animation-duration: 6s;  animation-delay: 0s; }
-    .deco:nth-child(2)  { top: 15%; right: 8%; animation-duration: 7s;  animation-delay: -2s; }
-    .deco:nth-child(3)  { top: 55%; left: 4%;  animation-duration: 8s;  animation-delay: -1s; }
-    .deco:nth-child(4)  { top: 70%; right: 5%; animation-duration: 5.5s;animation-delay: -3s; }
-    .deco:nth-child(5)  { top: 40%; left: 88%; animation-duration: 9s;  animation-delay: -0.5s; }
-    .deco:nth-child(6)  { top: 85%; left: 12%; animation-duration: 6.5s;animation-delay: -4s; }
+    .deco:nth-child(1)  { top: 8%;  left: 6%;  animation-duration: 6s;   animation-delay: 0s; }
+    .deco:nth-child(2)  { top: 15%; right: 8%; animation-duration: 7s;   animation-delay: -2s; }
+    .deco:nth-child(3)  { top: 55%; left: 4%;  animation-duration: 8s;   animation-delay: -1s; }
+    .deco:nth-child(4)  { top: 70%; right: 5%; animation-duration: 5.5s; animation-delay: -3s; }
+    .deco:nth-child(5)  { top: 40%; left: 88%; animation-duration: 9s;   animation-delay: -0.5s; }
+    .deco:nth-child(6)  { top: 85%; left: 12%; animation-duration: 6.5s; animation-delay: -4s; }
 
     /* ---- main card ---- */
     .main-card {
@@ -70,7 +69,7 @@
     .card-banner {
       background: var(--yellow);
       border-bottom: var(--border);
-      padding: 28px 28px 22px;
+      padding: 24px 28px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -100,11 +99,11 @@
       letter-spacing: .18em;
       padding: 3px 14px;
       border-radius: 99px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .card-banner h1 {
       font-family: 'Dela Gothic One', sans-serif;
-      font-size: clamp(32px, 9vw, 52px);
+      font-size: clamp(28px, 8vw, 46px);
       line-height: 1.05;
       position: relative;
     }
@@ -115,16 +114,22 @@
       padding: 0 10px;
       border-radius: 8px;
     }
+    .card-banner .subtitle {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 8px;
+      opacity: .7;
+    }
 
     /* ---- card body ---- */
     .card-body {
-      padding: 28px 28px 20px;
+      padding: 22px 24px 20px;
     }
     .catch {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      line-height: 1.8;
-      margin-bottom: 20px;
+      line-height: 1.85;
+      margin-bottom: 16px;
       text-align: center;
     }
     .catch em {
@@ -134,13 +139,48 @@
       border-radius: 4px;
     }
 
+    /* ---- 偏差値説明ブロック ---- */
+    .hensachi-preview {
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      animation: popIn .58s .06s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .hensachi-icon {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 36px;
+      color: var(--yellow);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .hensachi-text {
+      color: #fff;
+    }
+    .hensachi-text strong {
+      display: block;
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 14px;
+      color: var(--yellow);
+      margin-bottom: 4px;
+    }
+    .hensachi-text p {
+      font-size: 12px;
+      line-height: 1.7;
+      opacity: .85;
+    }
+
     /* ---- info chips ---- */
     .info-chips {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .chip {
       display: inline-flex;
@@ -156,6 +196,7 @@
     .chip.pink   { background: #FFE0EE; }
     .chip.blue   { background: #D0EDFF; }
     .chip.green  { background: #C8FFE4; }
+    .chip.yellow { background: var(--yellow); }
 
     /* ---- start button ---- */
     .start-btn {
@@ -175,7 +216,7 @@
       transition: transform .1s, box-shadow .1s;
       position: relative;
       overflow: hidden;
-      animation: popIn .6s .12s cubic-bezier(.34,1.56,.64,1) both;
+      animation: popIn .6s .14s cubic-bezier(.34,1.56,.64,1) both;
     }
     .start-btn::after {
       content: '';
@@ -191,7 +232,6 @@
       box-shadow: 2px 2px 0 var(--ink);
     }
 
-    /* ---- note ---- */
     .note {
       text-align: center;
       font-size: 12px;
@@ -200,7 +240,6 @@
       animation: popIn .65s .2s cubic-bezier(.34,1.56,.64,1) both;
     }
 
-    /* ---- animations ---- */
     @keyframes popIn {
       from { opacity: 0; transform: scale(.85) translateY(20px); }
       to   { opacity: 1; transform: scale(1)   translateY(0);    }
@@ -213,7 +252,6 @@
 </head>
 <body>
 
-  <!-- 背景デコ -->
   <div class="deco">⚡</div>
   <div class="deco">★</div>
   <div class="deco">◆</div>
@@ -221,23 +259,34 @@
   <div class="deco">●</div>
   <div class="deco">▲</div>
 
-  <!-- メインカード -->
   <div class="main-card">
     <div class="card-banner">
       <div class="badge">✦ CHARACTER DIAGNOSIS ✦</div>
       <h1>STATUS<br><span>診断</span></h1>
+      <p class="subtitle">あなたの人生偏差値、測ります。</p>
     </div>
 
     <div class="card-body">
       <p class="catch">
-        あなたの行動・感情・コミュ力…<br>
-        全部まとめて<em>キャラ診断</em>しちゃいます！
+        行動力・感情・コミュ力・知性・経験値…<br>
+        5つのステータスから<em>キャラ診断</em>と<br>
+        <em>人生偏差値</em>を算出します！
       </p>
+
+      <!-- 偏差値説明 -->
+      <div class="hensachi-preview">
+        <div class="hensachi-icon">📊</div>
+        <div class="hensachi-text">
+          <strong>人生偏差値とは？</strong>
+          <p>あなたの回答を10万人分のシミュレーションデータと比較して、本物の偏差値として算出します。平均は50。あなたは何点？</p>
+        </div>
+      </div>
 
       <div class="info-chips">
         <div class="chip pink">🧩 全30問</div>
         <div class="chip blue">⏱ 約5分</div>
         <div class="chip green">🎁 15種類のキャラ</div>
+        <div class="chip yellow">📊 偏差値診断</div>
       </div>
 
       <button class="start-btn" onclick="startDiagnosis()">
