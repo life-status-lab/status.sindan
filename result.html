@@ -617,6 +617,19 @@
     // コンフェッティ🎊
     launchConfetti();
   });
+  function shareInstagram() {
+  const result = diagnoseCharacter();
+  const text = `私は「${result.name}」（${result.type}）でした！`;
+  const url = `instagram-stories://share?source_application=your_app&backgroundTopColor=%23FFE54C&backgroundBottomColor=%23FF6BB5&caption=${encodeURIComponent(text)}`;
+  window.location.href = url;
+
+  // PCやインスタ未インストールの場合のフォールバック
+  setTimeout(() => {
+    if (document.visibilityState !== 'hidden') {
+      alert('インスタアプリが見つかりませんでした。アプリからお試しください！');
+    }
+  }, 1500);
+}
 </script>
 </body>
 </html>
