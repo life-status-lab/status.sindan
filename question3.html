@@ -1,148 +1,392 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-   <meta charset="UTF-8">
-   <title>Question</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STATUS診断 - Q21〜30</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFE54C;
+      --pink:   #FF6BB5;
+      --blue:   #4CC9FF;
+      --green:  #4CFFA0;
+      --orange: #FF8C42;
+      --purple: #C97BFF;
+      --bg:     #FFF8EC;
+      --ink:    #1A1A2E;
+      --card:   #FFFFFF;
+      --border: 3px solid var(--ink);
+      --shadow: 5px 5px 0px var(--ink);
+      --radius: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle, #FFE54C44 1px, transparent 1px),
+        radial-gradient(circle, #FF6BB522 1px, transparent 1px);
+      background-size: 32px 32px, 16px 16px;
+      background-position: 0 0, 8px 8px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 24px 16px 80px;
+    }
+
+    .progress-wrap {
+      max-width: 480px;
+      margin: 0 auto 24px;
+      animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .progress-label .pg-title {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 13px;
+    }
+    .progress-label .pg-num {
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--ink);
+      color: var(--yellow);
+      padding: 2px 10px;
+      border-radius: 99px;
+    }
+    .progress-track {
+      height: 10px;
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 99%;
+      background: linear-gradient(90deg, var(--pink), var(--orange));
+      border-radius: 99px;
+    }
+
+    .q-card {
+      max-width: 480px;
+      margin: 0 auto 20px;
+      background: var(--card);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: popIn .45s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .q-card:nth-child(2)  { animation-delay: .02s; }
+    .q-card:nth-child(3)  { animation-delay: .04s; }
+    .q-card:nth-child(4)  { animation-delay: .06s; }
+    .q-card:nth-child(5)  { animation-delay: .08s; }
+    .q-card:nth-child(6)  { animation-delay: .10s; }
+    .q-card:nth-child(7)  { animation-delay: .12s; }
+    .q-card:nth-child(8)  { animation-delay: .14s; }
+    .q-card:nth-child(9)  { animation-delay: .16s; }
+    .q-card:nth-child(10) { animation-delay: .18s; }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: var(--border);
+      background: var(--green);
+    }
+    .q-num {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .q-text {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .q-choices {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      text-align: left;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform .1s, box-shadow .1s, background .1s;
+      box-shadow: 3px 3px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .choice-btn .choice-label {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 12px;
+      background: var(--ink);
+      color: var(--yellow);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .choice-btn:hover {
+      background: #fff;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .choice-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+    .choice-btn.selected {
+      background: var(--green);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    .choice-btn.selected .choice-label {
+      background: var(--ink);
+      color: var(--green);
+    }
+
+    .next-wrap {
+      max-width: 480px;
+      margin: 8px auto 0;
+      animation: popIn .5s .2s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    .result-btn {
+      display: block;
+      width: 100%;
+      font-family: 'Dela Gothic One', sans-serif;
+      font-size: 17px;
+      text-align: center;
+      padding: 15px;
+      background: var(--orange);
+      color: #fff;
+      border: var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform .1s, box-shadow .1s;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .5s;
+    }
+    .result-btn:hover::after { transform: translateX(100%); }
+    .result-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #888;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.88) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)   translateY(0);    }
+    }
+  </style>
 </head>
-
 <body>
-   <h2>
-<button onclick="befQuestion2()">before question</button>
-   </h2>
-  <h1>Q21</h1>
 
-<p>
-  既読がつかないとき
-</p>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span class="pg-title">✦ PART 3 / 3</span>
+      <span class="pg-num">Q21〜30</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
 
-<button class="q21" onclick="q21('a', this)">気にせず自分から「追いLINEする」</button>
-<button class="q21" onclick="q21('b', this)">忙しいのかな？と少しだけ気になる</button>
-<button class="q21" onclick="q21('c', this)">特に気にしない。通知が来れば返す</button>
-<button class="q21" onclick="q21('d', this)">「何か変なこと送った？」と不安になる</button>
-<button class="q21" onclick="q21('e', this)">返信を待つのも、考えるのも疲れる</button>
+  <!-- Q21 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q21</span>
+      <span class="q-text">既読がつかないとき</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q21" onclick="q21('a', this)"><span class="choice-label">A</span>気にせず自分から「追いLINEする」</button>
+      <button class="choice-btn q21" onclick="q21('b', this)"><span class="choice-label">B</span>忙しいのかな？と少しだけ気になる</button>
+      <button class="choice-btn q21" onclick="q21('c', this)"><span class="choice-label">C</span>特に気にしない。通知が来れば返す</button>
+      <button class="choice-btn q21" onclick="q21('d', this)"><span class="choice-label">D</span>「何か変なこと送った？」と不安になる</button>
+      <button class="choice-btn q21" onclick="q21('e', this)"><span class="choice-label">E</span>返信を待つのも、考えるのも疲れる</button>
+    </div>
+  </div>
 
+  <!-- Q22 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q22</span>
+      <span class="q-text">黒歴史を思い出したとき</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q22" onclick="q22('a', this)"><span class="choice-label">A</span>ネタにしちゃえ！笑い話に変える</button>
+      <button class="choice-btn q22" onclick="q22('b', this)"><span class="choice-label">B</span>「若かったな、成長したしOK！」</button>
+      <button class="choice-btn q22" onclick="q22('c', this)"><span class="choice-label">C</span>うわぁ...と一瞬だけダメージを受ける</button>
+      <button class="choice-btn q22" onclick="q22('d', this)"><span class="choice-label">D</span>ずーっと引きずって悶々とする</button>
+      <button class="choice-btn q22" onclick="q22('e', this)"><span class="choice-label">E</span>消えたくなる</button>
+    </div>
+  </div>
 
-<h1>Q22</h1>
+  <!-- Q23 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q23</span>
+      <span class="q-text">コンビニに行く時</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q23" onclick="q23('a', this)"><span class="choice-label">A</span>目的のもの＋新作とかも買っちゃう派</button>
+      <button class="choice-btn q23" onclick="q23('b', this)"><span class="choice-label">B</span>必要なものだけをスマートに買う</button>
+      <button class="choice-btn q23" onclick="q23('c', this)"><span class="choice-label">C</span>目的はないけど、とりあえず入る</button>
+      <button class="choice-btn q23" onclick="q23('d', this)"><span class="choice-label">D</span>気づいたら無駄遣いしてる</button>
+      <button class="choice-btn q23" onclick="q23('e', this)"><span class="choice-label">E</span>そもそもコンビニに行くのすら面倒</button>
+    </div>
+  </div>
 
-<p>
-  黒歴史を思い出したとき
-</p>
+  <!-- Q24 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q24</span>
+      <span class="q-text">「あと5分だけ」</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q24" onclick="q24('a', this)"><span class="choice-label">A</span>本当に5分きっかりで済む</button>
+      <button class="choice-btn q24" onclick="q24('b', this)"><span class="choice-label">B</span>気づいたら10〜20分経ってる</button>
+      <button class="choice-btn q24" onclick="q24('c', this)"><span class="choice-label">C</span>いつの間にか1時間飛んでいる</button>
+      <button class="choice-btn q24" onclick="q24('d', this)"><span class="choice-label">D</span>「明日から本気出す」と夜更かしする</button>
+      <button class="choice-btn q24" onclick="q24('e', this)"><span class="choice-label">E</span>時間の概念が消滅し、朝を迎える</button>
+    </div>
+  </div>
 
-<button class="q22" onclick="q22('a', this)">ネタにしちゃえ！笑い話に変える</button>
-<button class="q22" onclick="q22('b', this)">「若かったな、成長したしOK！」</button>
-<button class="q22" onclick="q22('c', this)">うわぁ...と一瞬だけダメージを受ける</button>
-<button class="q22" onclick="q22('d', this)">ずーっと引きずって悶々とする</button>
-<button class="q22" onclick="q22('e', this)">消えたくなる</button>
+  <!-- Q25 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q25</span>
+      <span class="q-text">人生で欲しいもの</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q25" onclick="q25('a', this)"><span class="choice-label">A</span>社会的な大成功・名誉</button>
+      <button class="choice-btn q25" onclick="q25('b', this)"><span class="choice-label">B</span>揺るぎない生活の安定</button>
+      <button class="choice-btn q25" onclick="q25('c', this)"><span class="choice-label">C</span>毎日を遊び尽くす楽しさ</button>
+      <button class="choice-btn q25" onclick="q25('d', this)"><span class="choice-label">D</span>波風の立たない平穏な日々</button>
+      <button class="choice-btn q25" onclick="q25('e', this)"><span class="choice-label">E</span>誰にも邪魔されない無限の睡眠</button>
+    </div>
+  </div>
 
+  <!-- Q26 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q26</span>
+      <span class="q-text">旅行に行くなら</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q26" onclick="q26('a', this)"><span class="choice-label">A</span>行き当たりばったり！ノープラン突撃</button>
+      <button class="choice-btn q26" onclick="q26('b', this)"><span class="choice-label">B</span>ある程度のスケジュールは組んでおく</button>
+      <button class="choice-btn q26" onclick="q26('c', this)"><span class="choice-label">C</span>計画も運転も、全部誰かに任せたい</button>
+      <button class="choice-btn q26" onclick="q26('d', this)"><span class="choice-label">D</span>Youtubeの旅行動画を家で見れば満足</button>
+      <button class="choice-btn q26" onclick="q26('e', this)"><span class="choice-label">E</span>そもそも家から一歩も出たくない</button>
+    </div>
+  </div>
 
-<h1>Q23</h1>
+  <!-- Q27 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q27</span>
+      <span class="q-text">人間関係で一番大事なこと</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q27" onclick="q27('a', this)"><span class="choice-label">A</span>一緒にいてアガる「最高のノリ」</button>
+      <button class="choice-btn q27" onclick="q27('b', this)"><span class="choice-label">B</span>お互いを裏切らない「固い信頼」</button>
+      <button class="choice-btn q27" onclick="q27('c', this)"><span class="choice-label">C</span>気を遣わずに済む「心地よさ」</button>
+      <button class="choice-btn q27" onclick="q27('d', this)"><span class="choice-label">D</span>踏み込みすぎない「適切な距離感」</button>
+      <button class="choice-btn q27" onclick="q27('e', this)"><span class="choice-label">E</span>必要最低限しか「関わらないこと」</button>
+    </div>
+  </div>
 
-<p>
-  コンビニに行く時
-</p>
+  <!-- Q28 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q28</span>
+      <span class="q-text">スマホの通知が来たら</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q28" onclick="q28('a', this)"><span class="choice-label">A</span>「秒で」画面を確認する</button>
+      <button class="choice-btn q28" onclick="q28('b', this)"><span class="choice-label">B</span>手が空いたタイミングで普通に見る</button>
+      <button class="choice-btn q28" onclick="q28('c', this)"><span class="choice-label">C</span>誰からの連絡かで優先順位を変える</button>
+      <button class="choice-btn q28" onclick="q28('d', this)"><span class="choice-label">D</span>ため込んでから後でまとめて見る</button>
+      <button class="choice-btn q28" onclick="q28('e', this)"><span class="choice-label">E</span>大体いつも「通知OFF」にしている</button>
+    </div>
+  </div>
 
-<button class="q23" onclick="q23('a', this)">目的のもの＋新作とかも買っちゃう派</button>
-<button class="q23" onclick="q23('b', this)">必要なものだけをスマートに買う</button>
-<button class="q23" onclick="q23('c', this)">目的はないけど、とりあえず入る</button>
-<button class="q23" onclick="q23('d', this)">気づいたら無駄遣いしてる</button>
-<button class="q23" onclick="q23('e', this)">そもそもコンビニに行くのすら面倒</button>
+  <!-- Q29 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q29</span>
+      <span class="q-text">新しい環境への適応スピード</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q29" onclick="q29('a', this)"><span class="choice-label">A</span>初日から全員と仲良くなれる</button>
+      <button class="choice-btn q29" onclick="q29('b', this)"><span class="choice-label">B</span>割と早く、いつの間にか馴染んでいる</button>
+      <button class="choice-btn q29" onclick="q29('c', this)"><span class="choice-label">C</span>ちょっと時間がかかるけど慣れていく</button>
+      <button class="choice-btn q29" onclick="q29('d', this)"><span class="choice-label">D</span>人見知りが発動してかなり苦手</button>
+      <button class="choice-btn q29" onclick="q29('e', this)"><span class="choice-label">E</span>馴染める気がしない。一刻も早く帰りたい</button>
+    </div>
+  </div>
 
+  <!-- Q30 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-num">Q30</span>
+      <span class="q-text">もし過去の自分にメッセージを送れるなら</span>
+    </div>
+    <div class="q-choices">
+      <button class="choice-btn q30" onclick="q30('a', this)"><span class="choice-label">A</span>「お前の選択は正しい！突き進め！」</button>
+      <button class="choice-btn q30" onclick="q30('b', this)"><span class="choice-label">B</span>「安心していいぞ、ちゃんと成長してる！」</button>
+      <button class="choice-btn q30" onclick="q30('c', this)"><span class="choice-label">C</span>「そんなに気負うな、気楽にいこう！」</button>
+      <button class="choice-btn q30" onclick="q30('d', this)"><span class="choice-label">D</span>「ダラダラするな、もっと行動しろ！」</button>
+      <button class="choice-btn q30" onclick="q30('e', this)"><span class="choice-label">E</span>「大丈夫、未来の自分はもっと強い」</button>
+    </div>
+  </div>
 
-<h1>Q24</h1>
+  <div class="next-wrap">
+    <button class="result-btn" onclick="next3()">🎉 結果を見る！</button>
+    <span class="back-link" onclick="befQuestion2()">← 前のページに戻る</span>
+  </div>
 
-<p>
-  「あと5分だけ」
-</p>
-
-<button class="q24" onclick="q24('a', this)">本当に5分きっかりで済む</button>
-<button class="q24" onclick="q24('b', this)">気づいたら10~20分経ってる</button>
-<button class="q24" onclick="q24('c', this)">いつの間にか1時間飛んでいる</button>
-<button class="q24" onclick="q24('d', this)">「明日から本気出す」と夜更かしする</button>
-<button class="q24" onclick="q24('e', this)">時間の概念が消滅し、朝を迎える</button>
-
-
-<h1>Q25</h1>
-
-<p>
-  人生で欲しいもの
-</p>
-
-<button class="q25" onclick="q25('a', this)">社会的な大成功・名誉</button>
-<button class="q25" onclick="q25('b', this)">揺るぎない生活の安定</button>
-<button class="q25" onclick="q25('c', this)">毎日を遊び尽くす楽しさ</button>
-<button class="q25" onclick="q25('d', this)">波風の立たない平穏な日々</button>
-<button class="q25" onclick="q25('e', this)">誰にも邪魔されない無限の睡眠</button>
-
-
-<h1>Q26</h1>
-
-<p>
-  旅行に行くなら
-</p>
-
-<button class="q26" onclick="q26('a', this)">行き当たりばったり！ノープラン突撃</button>
-<button class="q26" onclick="q26('b', this)">ある程度のスケジュールは組んでおく</button>
-<button class="q26" onclick="q26('c', this)">計画も運転も、全部誰かに任せたい</button>
-<button class="q26" onclick="q26('d', this)">Youtubeの旅行動画を家で見れば満足</button>
-<button class="q26" onclick="q26('e', this)">そもそも家から一歩も出たくない</button>
-
-
-<h1>Q27</h1>
-
-<p>
-  人間関係で一番大事なこと
-</p>
-
-<button class="q27" onclick="q27('a', this)">一緒にいてアガる「最高のノリ」</button>
-<button class="q27" onclick="q27('b', this)">お互いを裏切らない「固い信頼」</button>
-<button class="q27" onclick="q27('c', this)">気を遣わずに済む「心地よさ」</button>
-<button class="q27" onclick="q27('d', this)">踏み込みすぎない「適切な距離感」</button>
-<button class="q27" onclick="q27('e', this)">必要最低限しか「関わらないこと」</button>
-
-
-<h1>Q28</h1>
-
-<p>
-  スマホの通知が来たら
-</p>
-
-<button class="q28" onclick="q28('a', this)">「秒で」で画面を確認する</button>
-<button class="q28" onclick="q28('b', this)">手が空いたタイミングで普通に見る</button>
-<button class="q28" onclick="q28('c', this)">誰からの連絡かで優先順位を変える</button>
-<button class="q28" onclick="q28('d', this)">ため込んでから後でまとめて見る</button>
-<button class="q28" onclick="q28('e', this)">大体いつも「通知OFF」にしている</button>
-
-
-<h1>Q29</h1>
-
-<p>
-  新しい環境への適応スピード
-</p>
-
-<button class="q29" onclick="q29('a', this)">初日から全員と仲良くなれる</button>
-<button class="q29" onclick="q29('b', this)">割と早く、いつの間にか馴染んでいる</button>
-<button class="q29" onclick="q29('c', this)">ちょっと時間がかかるけど慣れていく</button>
-<button class="q29" onclick="q29('d', this)">人見知りが発動してかなり苦手</button>
-<button class="q29" onclick="q29('e', this)">馴染める気がしない。一刻も早く帰りたい</button>
-
-
-<h1>Q30</h1>
-
-<p>
-  もし過去の自分にメッセージを送れるなら
-</p>
-
-<button class="q30" onclick="q30('a', this)">「お前の選択は正しい！突き進め！」</button>
-<button class="q30" onclick="q30('b', this)">「安心していいぞ、ちゃんと成長してる！」</button>
-<button class="q30" onclick="q30('c', this)">「そんなに気負うな、気楽にいこう！」</button>
-<button class="q30" onclick="q30('d', this)">「ダラダラするな、もっと行動しろ！」</button>
-<button class="q30" onclick="q30('e', this)">「大丈夫、未来の自分はもっと強い」</button>
-  <h2>
-   <button onclick="next3()">結果を見る</button>
-  </h2>
-   
   <script src="script.js"></script>
 </body>
-
 </html>
