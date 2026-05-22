@@ -331,7 +331,7 @@ function calcHensachi() {
 const CHARACTERS = [
   {
     // speed高・mental高・intel高・exp高 → まっすぐな主人公
-    name: "チャレン", type: "主人公型",
+    name: "チャレン", type: "人生主人公界隈",
     conditions: [
       { stat: "speed",        op: ">=", val: 8  },
       { stat: "mental",       op: ">=", val: 5  },
@@ -341,7 +341,7 @@ const CHARACTERS = [
   },
   {
     // speed高・exp高・mental中 → 行動力と経験値の冒険家
-    name: "ワンダ", type: "冒険家",
+    name: "ワンダ", type: "冒険中毒界隈",
     conditions: [
       { stat: "speed",      op: ">=", val: 7 },
       { stat: "mental",     op: ">=", val: 1 },
@@ -350,7 +350,7 @@ const CHARACTERS = [
   },
   {
     // comm高・speed中・exp高 → 陽キャ
-    name: "ポカリン", type: "陽キャ型",
+    name: "ポカリン", type: "陽キャ最前線界隈",
     conditions: [
       { stat: "speed",         op: ">=", val: 4 },
       { stat: "communication", op: ">=", val: 9 },
@@ -359,7 +359,7 @@ const CHARACTERS = [
   },
   {
     // mental高・comm高 → 感情豊か・情緒揺れ
-    name: "ユラ", type: "情緒揺れ",
+    name: "ユラ", type: "共感性バグ界隈",
     conditions: [
       { stat: "mental",        op: ">=", val: 4 },
       { stat: "communication", op: ">=", val: 8 },
@@ -367,7 +367,7 @@ const CHARACTERS = [
   },
   {
     // comm高・mental中・intel中 → 空気読み
-    name: "ミナモ", type: "空気読み",
+    name: "ミナモ", type: "空気読み界隈",
     conditions: [
       { stat: "mental",        op: ">=", val: 2 },
       { stat: "communication", op: ">=", val: 6 },
@@ -376,7 +376,7 @@ const CHARACTERS = [
   },
   {
     // comm高・exp低め → コミュ力高いが経験値控えめな愛され型
-    name: "キュルン", type: "愛され型",
+    name: "キュルン", type: "愛され界隈",
     conditions: [
       { stat: "mental",        op: ">=", val: 2 },
       { stat: "communication", op: ">=", val: 8 },
@@ -385,7 +385,7 @@ const CHARACTERS = [
   },
   {
     // intel高・exp高 → 記録者
-    name: "ノート", type: "記録者",
+    name: "ノート", type: "記録魔界隈",
     conditions: [
       { stat: "intelligence", op: ">=", val: 5 },
       { stat: "experience",   op: ">=", val: 7 },
@@ -393,7 +393,7 @@ const CHARACTERS = [
   },
   {
     // comm中・intel高・exp高 → 好奇心旺盛
-    name: "キョロリ", type: "好奇心",
+    name: "キョロリ", type: "好奇心暴走界隈",
     conditions: [
       { stat: "communication", op: ">=", val: 4 },
       { stat: "intelligence",  op: ">=", val: 5 },
@@ -402,7 +402,7 @@ const CHARACTERS = [
   },
   {
     // mental中・intel高・exp高 → 収集家
-    name: "ハコベ", type: "収集家",
+    name: "ハコベ", type: "収集狂界隈",
     conditions: [
       { stat: "mental",       op: ">=", val: 1 },
       { stat: "intelligence", op: ">=", val: 4 },
@@ -411,7 +411,7 @@ const CHARACTERS = [
   },
   {
     // mental低・intel高 → 感情より論理の合理主義
-    name: "ロギ", type: "合理主義",
+    name: "ロギ", type: "理屈最強界隈",
     conditions: [
       { stat: "mental",       op: "<=", val: -2 },
       { stat: "intelligence", op: ">=", val: 4  },
@@ -419,7 +419,7 @@ const CHARACTERS = [
   },
   {
     // speed低・comm低・intel高 → 内向きで深く考える考察型
-    name: "ツムリィ", type: "考察型",
+    name: "ツムリィ", type: "考察界隈",
     conditions: [
       { stat: "speed",         op: "<=", val: -1 },
       { stat: "communication", op: "<=", val: -1 },
@@ -428,7 +428,7 @@ const CHARACTERS = [
   },
   {
     // mental低・comm低・intel高 → 内向き・夜型
-    name: "ヨルミー", type: "夜型",
+    name: "ヨルミー", type: "深夜界隈",
     conditions: [
       { stat: "mental",        op: "<=", val: -1 },
       { stat: "communication", op: "<=", val: 2  },
@@ -437,7 +437,7 @@ const CHARACTERS = [
   },
   {
     // speed低・comm低・mental中 → 闇を抱え込む
-    name: "ヤミィ", type: "闇抱え込み",
+    name: "ヤミィ", type: "雰囲気界隈",
     conditions: [
       { stat: "speed",         op: "<=", val: -3 },
       { stat: "communication", op: "<=", val: -1 },
@@ -445,7 +445,7 @@ const CHARACTERS = [
   },
   {
     // mental低・exp低 → 空回りする暴走型
-    name: "ラッシュ", type: "暴走型",
+    name: "ラッシュ", type: "人生RTA界隈",
     conditions: [
       { stat: "mental",     op: "<=", val: -3 },
       { stat: "experience", op: "<=", val: -1 },
@@ -453,7 +453,7 @@ const CHARACTERS = [
   },
   {
     // speed低・mental低・intel低 → 衝動型（フォールバック）
-    name: "フレア", type: "衝動型",
+    name: "フレア", type: "感情暴走界隈",
     conditions: [
       { stat: "speed",        op: "<=", val: -1 },
       { stat: "mental",       op: "<=", val: -1 },
