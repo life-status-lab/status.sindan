@@ -43,34 +43,53 @@
       padding:3px 12px;border-radius:99px;white-space:nowrap;
     }
     .card-top .chara-type-label{font-size:13px;font-weight:700;opacity:.6;}
+
+    /* ---- キャラ画像エリア ---- */
     .card-img{
       border-bottom:var(--border);
       background:linear-gradient(135deg,#ffe0f0 0%,#e0f4ff 100%);
       display:flex;align-items:center;justify-content:center;
-      padding:32px;min-height:220px;position:relative;overflow:hidden;
+      padding:32px;min-height:280px;position:relative;overflow:hidden;
     }
     .card-img::before{content:'';position:absolute;width:200px;height:200px;background:var(--yellow);border-radius:50%;opacity:.25;top:-60px;right:-40px;}
     .card-img::after{content:'';position:absolute;width:120px;height:120px;background:var(--pink);border-radius:50%;opacity:.18;bottom:-30px;left:-20px;}
-    .card-img img{
-      width:240px;height:240px;object-fit:contain;position:relative;z-index:1;
-      filter:drop-shadow(0 6px 12px rgba(0,0,0,.15));animation:float 3s ease-in-out infinite;
+
+    /* 楕円の影（浮いてる感） */
+    .shadow-ellipse{
+      position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+      width:150px;height:22px;
+      background:rgba(0,0,0,.12);border-radius:50%;filter:blur(8px);
+      z-index:0;animation:shadowPulse 3s ease-in-out infinite;
     }
+
+    /* キャラ本体 */
+    .card-img img{
+      width:240px;height:240px;object-fit:contain;
+      position:relative;z-index:1;
+      filter:drop-shadow(0 28px 18px rgba(0,0,0,.2)) drop-shadow(0 4px 6px rgba(0,0,0,.1));
+      animation:charFloat 3s ease-in-out infinite, charEntrance .7s cubic-bezier(.34,1.56,.64,1) both;
+    }
+
+    /* キラキラ */
+    .sparkle{
+      position:absolute;pointer-events:none;
+      animation:sparklePop linear forwards;z-index:2;
+    }
+
     .card-img .img-placeholder{
       width:160px;height:160px;border:3px dashed #ccc;border-radius:50%;
       display:flex;align-items:center;justify-content:center;
-      font-size:48px;position:relative;z-index:1;animation:float 3s ease-in-out infinite;
+      font-size:48px;position:relative;z-index:1;animation:charFloat 3s ease-in-out infinite;
     }
+
     .card-body{padding:24px;}
     .chara-name{font-family:'Dela Gothic One',sans-serif;font-size:clamp(36px,9vw,54px);line-height:1;margin-bottom:6px;}
     .chara-type{font-size:15px;font-weight:700;color:var(--pink);margin-bottom:12px;}
-
-    /* サブタイトル（キャッチコピー） */
     .chara-catchcopy{
       font-size:13px;font-weight:700;color:#666;
       margin-bottom:16px;line-height:1.6;
       border-left:3px solid var(--pink);padding-left:10px;
     }
-
     .chara-desc{
       font-size:14px;line-height:1.85;color:#444;
       background:var(--bg);border:2px solid var(--ink);
@@ -106,16 +125,10 @@
     }
     .compat-section h2{font-family:'Dela Gothic One',sans-serif;font-size:16px;margin-bottom:16px;}
     .compat-row{display:flex;gap:12px;}
-    .compat-card{
-      flex:1;border:2px solid var(--ink);border-radius:14px;
-      padding:14px;text-align:center;
-    }
+    .compat-card{flex:1;border:2px solid var(--ink);border-radius:14px;padding:14px;text-align:center;}
     .compat-card.good{background:#FFFDE7;}
     .compat-card.bad{background:#FFF0F5;}
-    .compat-badge{
-      font-size:10px;font-weight:700;padding:2px 10px;border-radius:99px;
-      margin-bottom:8px;display:inline-block;
-    }
+    .compat-badge{font-size:10px;font-weight:700;padding:2px 10px;border-radius:99px;margin-bottom:8px;display:inline-block;}
     .compat-card.good .compat-badge{background:var(--yellow);color:var(--ink);}
     .compat-card.bad .compat-badge{background:var(--pink);color:#fff;}
     .compat-name{font-family:'Dela Gothic One',sans-serif;font-size:20px;margin-bottom:4px;}
@@ -141,10 +154,7 @@
       animation:popIn .57s .1s cubic-bezier(.34,1.56,.64,1) both;
     }
     .tips-section h2{font-family:'Dela Gothic One',sans-serif;font-size:16px;margin-bottom:14px;}
-    .tip-item{
-      display:flex;gap:10px;align-items:flex-start;
-      margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed #eee;
-    }
+    .tip-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed #eee;}
     .tip-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
     .tip-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
     .tip-body{}
@@ -152,10 +162,7 @@
     .tip-text{font-size:13px;line-height:1.6;color:#333;}
 
     /* share */
-    .share-section{
-      max-width:480px;margin:0 auto 28px;
-      animation:popIn .6s .16s cubic-bezier(.34,1.56,.64,1) both;
-    }
+    .share-section{max-width:480px;margin:0 auto 28px;animation:popIn .6s .16s cubic-bezier(.34,1.56,.64,1) both;}
     .share-section h2{font-family:'Dela Gothic One',sans-serif;font-size:16px;text-align:center;margin-bottom:14px;}
     .share-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
     .share-btn{
@@ -186,8 +193,12 @@
     .confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
     .confetti-piece{position:absolute;width:10px;height:10px;top:-10px;animation:fall linear forwards;}
 
+    /* ---- アニメーション ---- */
     @keyframes popIn{from{opacity:0;transform:scale(.85) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
-    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+    @keyframes charFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+    @keyframes charEntrance{from{opacity:0;transform:scale(.6) translateY(30px);}to{opacity:1;transform:scale(1) translateY(0);}}
+    @keyframes shadowPulse{0%,100%{transform:translateX(-50%) scaleX(1);opacity:.7;}50%{transform:translateX(-50%) scaleX(.75);opacity:.3;}}
+    @keyframes sparklePop{0%{opacity:1;transform:translate(0,0) scale(1);}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0);}}
     @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
 
     .accent-チャレン{color:#FF6BB5;} .accent-フレア{color:#FF8C42;}
@@ -223,6 +234,7 @@
     <span class="chara-type-label">診断タイプ</span>
   </div>
   <div class="card-img" id="card-img">
+    <div class="shadow-ellipse"></div>
     <img id="chara-img" src="chara.png" alt="キャラクター画像"
          onerror="this.style.display='none';document.getElementById('chara-emoji').style.display='flex';">
     <div class="img-placeholder" id="chara-emoji" style="display:none;">🌟</div>
@@ -232,8 +244,6 @@
     <div class="chara-type" id="chara-type">タイプ読み込み中...</div>
     <div class="chara-catchcopy" id="chara-catchcopy">...</div>
     <div class="chara-desc" id="chara-desc">診断結果を読み込んでいます...</div>
-
-    <!-- 偏差値 -->
     <div class="hensachi-wrap">
       <div class="hensachi-left">
         <span class="hensachi-label">📊 人生偏差値</span>
@@ -244,8 +254,6 @@
         <div class="hensachi-up" id="hensachi-up"></div>
       </div>
     </div>
-
-    <!-- 弱点 -->
     <div class="weakness-wrap">
       <div class="weakness-title">⚠️ あなたの弱点</div>
       <div class="weakness-text" id="weakness-text">...</div>
@@ -253,7 +261,6 @@
   </div>
 </div>
 
-<!-- 相性 -->
 <div class="compat-section">
   <h2>💫 あなたの相性</h2>
   <div class="compat-row">
@@ -270,7 +277,6 @@
   </div>
 </div>
 
-<!-- スコアバー -->
 <div class="stats">
   <h2>📊 あなたのスコア</h2>
   <div class="stat-row">
@@ -300,13 +306,11 @@
   </div>
 </div>
 
-<!-- 偏差値アップ術 -->
 <div class="tips-section">
   <h2>🚀 偏差値アップ術</h2>
   <div id="tips-list"></div>
 </div>
 
-<!-- シェア -->
 <div class="share-section">
   <h2>🎉 シェアしよう！</h2>
   <div class="share-buttons">
@@ -334,105 +338,105 @@
 <script>
 const CHARA_DATA = {
   "チャレン": {
-    img:"images/08.png", emoji:"⚡",
+    img:"images/08m.png", emoji:"⚡",
     catchcopy:"行動力と根性で道を切り拓く、生まれながらのリーダー",
     desc:"いつだってまっすぐ前を向く、生まれながらの主人公！困難にぶつかるほど燃えるタイプで、周りを自然と引っ張っていく存在。失敗を恐れず、挑戦し続けるその姿がみんなの憧れ！",
     good:"ワンダ", goodSub:"お互いの行動力が共鳴して最強コンビに",
     bad:"フレア", badSub:"衝動 vs 計画でぶつかりがち",
   },
   "フレア": {
-    img:"images/09.png", emoji:"🔥",
+    img:"images/09m.png", emoji:"🔥",
     catchcopy:"感情が先行する、止められない衝動の塊",
     desc:"感情の炎が一瞬で爆発！直感と勢いで突き進む衝動型。じっくり考えるより先に体が動いちゃうけど、その情熱こそが最大の武器。熱量だけは誰にも負けない！",
     good:"ラッシュ", goodSub:"同じ衝動型同士、テンションが合いすぎる",
     bad:"チャレン", badSub:"計画的なチャレンには理解されにくい",
   },
   "ラッシュ": {
-    img:"images/05.png", emoji:"💥",
+    img:"images/05m.png", emoji:"💥",
     catchcopy:"空回りしながらも突き進む、予測不能な暴走機関車",
     desc:"止まれない、止められない！メンタルが低くても体だけは動いちゃうタイプ。時に空回りするけど、その突破力は本物。自分でも予測不能な暴走がクセになる。",
     good:"フレア", goodSub:"同じ衝動エネルギーで盛り上がれる",
     bad:"チャレン", badSub:"計画性のギャップでよくぶつかる",
   },
   "ヨルミー": {
-    img:"images/03.png", emoji:"🌙",
+    img:"images/03m.png", emoji:"🌙",
     catchcopy:"夜と静寂を愛する、内向きの知性派",
     desc:"夜が一番似合う、論理的で内向きな夜型人間。静かな時間に深く考え、感じるものを大切にするタイプ。昼より夜、にぎやかさより静寂。そんなあなたの世界には独特の美しさがある。",
     good:"ロギ", goodSub:"知性派同士、会話が深く刺さり合う",
     bad:"チャレン", badSub:"エネルギーの方向性が真逆すぎる",
   },
   "ユラ": {
-    img:"images/06.png", emoji:"🌊",
+    img:"images/06m.png", emoji:"🌊",
     catchcopy:"感情の波に揺れながら、誰よりも共感力が高い",
     desc:"感情がゆらゆら揺れる、豊かな心の持ち主。喜怒哀楽がダイレクトに伝わってくるから、一緒にいると感情移入しすぎることも。その繊細さが、誰よりも人の気持ちをわかる力になってる！",
     good:"ミナモ", goodSub:"感情を受け止めてくれるミナモに癒される",
     bad:"フレア", badSub:"フレアの爆発についていけないことも",
   },
   "ヤミィ": {
-    img:"images/14.png", emoji:"🖤",
+    img:"images/14m.png", emoji:"🖤",
     catchcopy:"闇を静かに抱えながら前を向く、強さの人",
     desc:"深い闇を静かに抱えながら、それでも前を向いてる強さがある。見た目はクールでも、内側には激しい感情の嵐。一人で抱え込みがちだけど、その深さこそがあなたの魅力。",
     good:"ツムリィ", goodSub:"内向き同士、言葉なくても通じ合える",
     bad:"チャレン", badSub:"チャレンの明るさが眩しすぎる",
   },
   "キュルン": {
-    img:"images/07.png", emoji:"🍭",
+    img:"images/07m.png", emoji:"🍭",
     catchcopy:"気づけば周りに人が集まる、天然の愛されオーラ",
     desc:"気づいたら周りに人が集まってくる、天然の愛され体質！無意識に場を和ませて、みんなをほっこりさせる癒し系。甘えるのも甘やかすのも得意で、いつも誰かの「推し」になってる！",
     good:"ユラ", goodSub:"感情を共有し合えるベストパートナー",
     bad:"チャレン", badSub:"チャレンのガンガン系に気疲れしがち",
   },
   "ポカリン": {
-    img:"images/05.png", emoji:"☀️",
+    img:"images/05m.png", emoji:"☀️",
     catchcopy:"どこにいても場を明るくする、無限エネルギーの陽キャ",
     desc:"どこにいてもその場の空気を明るくしちゃう陽キャの王道！コミュ力バツグンで初対面でもすぐ打ち解けられる。笑顔が武器で、友達の数は多分数えきれない。エネルギーが無限！",
     good:"ワンダ", goodSub:"行動力とコミュ力で最強に楽しい時間を作れる",
     bad:"ツムリィ", badSub:"静かなツムリィには少しうるさいかも",
   },
   "ミナモ": {
-    img:"images/04.png", emoji:"💧",
+    img:"images/04m.png", emoji:"💧",
     catchcopy:"場の空気を読む天才、縁の下の静かな立役者",
     desc:"空気を読む天才！場の流れを瞬時に察知して、自然と最適な立ち位置を取れる。でしゃばりすぎず、引きすぎず。そのバランス感覚こそがあなたのすごいところ。縁の下の力持ち系！",
     good:"キョロリ", goodSub:"知的好奇心を持つキョロリとの会話が弾む",
     bad:"チャレン", badSub:"チャレンのゴリ押しスタイルに合わせるのが大変",
   },
   "ツムリィ": {
-    img:"images/13.png", emoji:"🔍",
+    img:"images/13m.png", emoji:"🔍",
     catchcopy:"物事の奥底まで掘り下げる、孤高の考察マシン",
     desc:"物事をとことん深く考える、生粋の考察タイプ。表面だけじゃなく、その奥の奥まで見通そうとするから、気づいたら頭の中でひとり研究発表が始まってることも。分析力はピカイチ！",
     good:"ヨルミー", goodSub:"静かで知的な空間を一緒に作れる",
     bad:"チャレン", badSub:"チャレンの直感行動が理解できない",
   },
   "ロギ": {
-    img:"images/10.png", emoji:"📐",
+    img:"images/10m.png", emoji:"📐",
     catchcopy:"感情を排除して最適解を導く、冷静な合理主義者",
     desc:"感情より論理、直感より根拠。データと理屈で動く合理主義者。無駄を嫌い、最短ルートを即座に計算できる。クールに見えるけど、実は正しいことへの強いこだわりを持ってる。",
     good:"ヨルミー", goodSub:"知性的な会話ができる最高の理解者",
     bad:"チャレン", badSub:"感情で動くチャレンとは相容れない",
   },
   "ノート": {
-    img:"images/12.png", emoji:"📓",
+    img:"images/12m.png", emoji:"📓",
     catchcopy:"見たものを言語化せずにはいられない、記録の人",
     desc:"見たこと、感じたこと、考えたことを書き残さずにはいられない記録者。記憶より記録、感情より言語化。あなたの残してきたログが、いつか誰かの大切な地図になる。",
     good:"キョロリ", goodSub:"好奇心旺盛なキョロリの話をメモしたくなる",
     bad:"フレア", badSub:"フレアの衝動的な行動を記録しきれない",
   },
   "キョロリ": {
-    img:"images/11.png", emoji:"👀",
+    img:"images/11m.png", emoji:"👀",
     catchcopy:"世界中のすべてに「なんで？」を問い続ける好奇心の塊",
     desc:"世界のすべてが気になって仕方ない、好奇心のかたまり！あっちにもこっちにも興味が飛んで、気づいたら知識が雑多に積み上がってる。その「なんで？」が止まらないのが最大の強み！",
     good:"ノート", goodSub:"お互いの知識欲が共鳴して話が尽きない",
     bad:"フレア", badSub:"フレアの感情的な行動が論理的に理解できない",
   },
   "ワンダ": {
-    img:"images/15.png", emoji:"🗺️",
+    img:"images/15m.png", emoji:"🗺️",
     catchcopy:"未知への挑戦を止められない、本能の冒険家",
     desc:"未知の世界へ飛び込むことが何より好きな冒険家！地図のない道を楽しみながら進んでいける胆力の持ち主。新しい出会い、景色、経験…ぜんぶがあなたの燃料になってる！",
     good:"ポカリン", goodSub:"行動力×コミュ力で最高の冒険仲間に",
     bad:"フレア", badSub:"フレアの衝動は予測不能すぎてついていけない",
   },
   "ハコベ": {
-    img:"images/01.png", emoji:"📦",
+    img:"images/01m.png", emoji:"📦",
     catchcopy:"こだわりのコレクションに人生を捧げる、深みのマニア",
     desc:"好きなものをひたすら集め、丁寧にコレクションしていく収集家。量より質、広さより深さ。こだわりのコレクションには確かな審美眼が光ってる。その情熱、本物のマニアの証！",
     good:"ノート", goodSub:"記録とコレクションで完璧なアーカイブを作れる",
@@ -440,7 +444,6 @@ const CHARA_DATA = {
   },
 };
 
-// 偏差値ランク
 function getHensachiRank(h) {
   if (h >= 75) return { rank:"🏆 伝説級", up:"上位1%のレジェンド" };
   if (h >= 70) return { rank:"👑 神クラス", up:"上位2%の超人" };
@@ -454,33 +457,32 @@ function getHensachiRank(h) {
   return { rank:"🌙 隠れた才能型", up:"磨けば光る原石" };
 }
 
-// 最も低いスコアから弱点コメント
 function getWeakness(sp, me, co, iq, ex) {
   const stats = [
     { name:"行動力", val:sp, comments:[
-        "何者にもなれてないのに、悩んでる時間だけは一流。",
-  "逃げ癖が染みつきすぎて、自分の人生すら前に進められてない。",
-  "結局いつも『やらなかった側』にいる。",
+      "何者にもなれてないのに、悩んでる時間だけは一流。",
+      "逃げ癖が染みつきすぎて、自分の人生すら前に進められてない。",
+      "結局いつも『やらなかった側』にいる。",
     ]},
     { name:"感情", val:me, comments:[
-     "情緒が終わってるせいで、毎回自分で自分を壊してる。",
-  "被害妄想と自己否定だけで精神を消費してる。",
-  "感情を制御できてない時点で、人生の主導権ほぼ失ってる。",
+      "情緒が終わってるせいで、毎回自分で自分を壊してる。",
+      "被害妄想と自己否定だけで精神を消費してる。",
+      "感情を制御できてない時点で、人生の主導権ほぼ失ってる。",
     ]},
     { name:"コミュ力", val:co, comments:[
-   "他人の顔色うかがうだけで、自分の中身が空っぽになってる。",
-  "本音隠しすぎて、誰ともまともな関係作れてない。",
-  "人間関係下手なくせに承認欲求だけは異常に強い。",
+      "他人の顔色うかがうだけで、自分の中身が空っぽになってる。",
+      "本音隠しすぎて、誰ともまともな関係作れてない。",
+      "人間関係下手なくせに承認欲求だけは異常に強い。",
     ]},
     { name:"知性", val:iq, comments:[
-     "何も考えずに動いて失敗して、また同じこと繰り返してる。",
-  "浅い判断ばっかしてるから、人生ずっと効率悪い。",
-  "勢いだけで生きてるせいで、自分の失敗すら分析できてない。",
+      "何も考えずに動いて失敗して、また同じこと繰り返してる。",
+      "浅い判断ばっかしてるから、人生ずっと効率悪い。",
+      "勢いだけで生きてるせいで、自分の失敗すら分析できてない。",
     ]},
     { name:"経験値", val:ex, comments:[
       "挑戦から逃げ続けた結果、人格が全然育ってない。",
-  "安全圏に引きこもってるだけなのに、『慎重』だと思い込んでる。",
-  "失敗を恐れて何もしないまま、時間だけ無駄に死んでいってる。",
+      "安全圏に引きこもってるだけなのに、『慎重』だと思い込んでる。",
+      "失敗を恐れて何もしないまま、時間だけ無駄に死んでいってる。",
     ]},
   ];
   stats.sort((a,b)=>a.val-b.val);
@@ -489,7 +491,6 @@ function getWeakness(sp, me, co, iq, ex) {
   return `【${worst.name}が弱点】${comment}`;
 }
 
-// 偏差値アップ術（最も低い2スコアから生成）
 function getTips(sp, me, co, iq, ex) {
   const stats = [
     { name:"行動力", val:sp, icon:"⚡", tips:[
@@ -580,6 +581,26 @@ function launchConfetti() {
   setTimeout(()=>{container.innerHTML='';},4000);
 }
 
+function launchSparkles() {
+  const container = document.getElementById('card-img');
+  const sparkles = ['✦','★','✨','⭐','💫','🌟'];
+  setInterval(() => {
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    el.style.fontSize = (12 + Math.random() * 12) + 'px';
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 50 + Math.random() * 70;
+    el.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+    el.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+    el.style.left = (30 + Math.random() * 40) + '%';
+    el.style.top  = (15 + Math.random() * 55) + '%';
+    el.style.animationDuration = (.8 + Math.random() * .8) + 's';
+    container.appendChild(el);
+    setTimeout(() => el.remove(), 1600);
+  }, 500);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const result = diagnoseCharacter();
   const data = CHARA_DATA[result.name] || {
@@ -589,7 +610,6 @@ window.addEventListener('DOMContentLoaded', () => {
     good:"???", goodSub:"", bad:"???", badSub:""
   };
 
-  // キャラ情報
   const nameEl = document.getElementById('chara-name');
   nameEl.textContent = result.name;
   nameEl.className = 'chara-name accent-' + result.name;
@@ -602,35 +622,29 @@ window.addEventListener('DOMContentLoaded', () => {
   const img = document.getElementById('chara-img');
   img.src = data.img; img.alt = result.name;
 
-  // 偏差値
   const h = calcHensachi();
   const rankData = getHensachiRank(h);
   document.getElementById('hensachi-num').textContent = h;
   document.getElementById('hensachi-rank').textContent = rankData.rank;
   document.getElementById('hensachi-up').textContent = rankData.up;
 
-  // 弱点
   document.getElementById('weakness-text').textContent =
     getWeakness(speed, mental, communication, intelligence, experience);
 
-  // 相性
   document.getElementById('compat-good-name').textContent = data.good;
   document.getElementById('compat-good-sub').textContent = data.goodSub;
   document.getElementById('compat-bad-name').textContent = data.bad;
   document.getElementById('compat-bad-sub').textContent = data.badSub;
 
-  // スコアバー
   renderBar('bar-speed','val-speed', speed);
   renderBar('bar-mental','val-mental', mental);
   renderBar('bar-comm','val-comm', communication);
   renderBar('bar-intel','val-intel', intelligence);
   renderBar('bar-exp','val-exp', experience);
 
-  // 偏差値アップ術
   document.getElementById('tips-list').innerHTML =
     getTips(speed, mental, communication, intelligence, experience);
 
-  // シェアURL
   const shareText = encodeURIComponent(
     `🎉 STATUS診断！\n私は「${result.name}」（${result.type}）\n人生偏差値: ${h}（${rankData.rank}）\nあなたも試して！`
   );
@@ -641,8 +655,8 @@ window.addEventListener('DOMContentLoaded', () => {
     `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${shareText}`;
 
   launchConfetti();
+  launchSparkles();
 
-  // 統計データをGASに送信（ユーザーには見えない）
   sendToGAS(result, h);
 });
 
