@@ -20,9 +20,7 @@
       --shadow: 5px 5px 0px var(--ink);
       --radius: 20px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background-color: var(--bg);
       background-image:
@@ -35,340 +33,177 @@
       min-height: 100vh;
       padding: 24px 16px 60px;
     }
-
-    /* ---- header ---- */
-    .page-header {
-      text-align: center;
-      margin-bottom: 32px;
-    }
+    .page-header { text-align: center; margin-bottom: 32px; }
     .page-header .label {
       display: inline-block;
-      background: var(--ink);
-      color: var(--yellow);
+      background: var(--ink); color: var(--yellow);
       font-family: 'Dela Gothic One', sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      padding: 4px 14px;
-      border-radius: 99px;
-      margin-bottom: 10px;
+      font-size: 12px; letter-spacing: 0.15em;
+      padding: 4px 14px; border-radius: 99px; margin-bottom: 10px;
     }
     .page-header h1 {
       font-family: 'Dela Gothic One', sans-serif;
-      font-size: clamp(28px, 7vw, 48px);
-      line-height: 1.1;
+      font-size: clamp(28px, 7vw, 48px); line-height: 1.1;
     }
-
-    /* ---- result card ---- */
+    /* result card */
     .result-card {
-      max-width: 480px;
-      margin: 0 auto 28px;
-      background: var(--card);
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      max-width: 480px; margin: 0 auto 28px;
+      background: var(--card); border: var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
       overflow: hidden;
       animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
     }
-
     .card-top {
-      background: var(--yellow);
-      border-bottom: var(--border);
+      background: var(--yellow); border-bottom: var(--border);
       padding: 18px 24px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
     }
     .type-badge {
-      background: var(--ink);
-      color: var(--yellow);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 3px 12px;
-      border-radius: 99px;
-      white-space: nowrap;
+      background: var(--ink); color: var(--yellow);
+      font-size: 12px; font-weight: 700;
+      padding: 3px 12px; border-radius: 99px; white-space: nowrap;
     }
-    .card-top .chara-type-label {
-      font-size: 13px;
-      font-weight: 700;
-      opacity: .6;
-    }
-
+    .card-top .chara-type-label { font-size: 13px; font-weight: 700; opacity: .6; }
     .card-img {
       border-bottom: var(--border);
       background: linear-gradient(135deg, #ffe0f0 0%, #e0f4ff 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      min-height: 220px;
-      position: relative;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px; min-height: 220px;
+      position: relative; overflow: hidden;
     }
     .card-img::before {
-      content: '';
-      position: absolute;
-      width: 200px; height: 200px;
-      background: var(--yellow);
-      border-radius: 50%;
-      opacity: .25;
-      top: -60px; right: -40px;
+      content: ''; position: absolute;
+      width: 200px; height: 200px; background: var(--yellow);
+      border-radius: 50%; opacity: .25; top: -60px; right: -40px;
     }
     .card-img::after {
-      content: '';
-      position: absolute;
-      width: 120px; height: 120px;
-      background: var(--pink);
-      border-radius: 50%;
-      opacity: .18;
-      bottom: -30px; left: -20px;
+      content: ''; position: absolute;
+      width: 120px; height: 120px; background: var(--pink);
+      border-radius: 50%; opacity: .18; bottom: -30px; left: -20px;
     }
     .card-img img {
-      width: 160px;
-      height: 160px;
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
+      width: 160px; height: 160px; object-fit: contain;
+      position: relative; z-index: 1;
       filter: drop-shadow(0 6px 12px rgba(0,0,0,.15));
       animation: float 3s ease-in-out infinite;
     }
     .card-img .img-placeholder {
       width: 160px; height: 160px;
-      border: 3px dashed #ccc;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
-      position: relative;
-      z-index: 1;
+      border: 3px dashed #ccc; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px; position: relative; z-index: 1;
       animation: float 3s ease-in-out infinite;
     }
-
-    .card-body {
-      padding: 24px;
-    }
+    .card-body { padding: 24px; }
     .chara-name {
       font-family: 'Dela Gothic One', sans-serif;
-      font-size: clamp(36px, 9vw, 54px);
-      line-height: 1;
-      margin-bottom: 6px;
-      /* キャラごとに色を変える */
+      font-size: clamp(36px, 9vw, 54px); line-height: 1; margin-bottom: 6px;
     }
-    .chara-type {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--pink);
-      margin-bottom: 16px;
-    }
+    .chara-type { font-size: 15px; font-weight: 700; color: var(--pink); margin-bottom: 16px; }
     .chara-desc {
-      font-size: 14px;
-      line-height: 1.85;
-      color: #444;
-      background: var(--bg);
-      border: 2px solid var(--ink);
-      border-radius: 12px;
-      padding: 14px 16px;
+      font-size: 14px; line-height: 1.85; color: #444;
+      background: var(--bg); border: 2px solid var(--ink);
+      border-radius: 12px; padding: 14px 16px;
     }
-
+    /* 偏差値 */
     .hensachi-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 14px;
-      padding: 12px 18px;
-      background: var(--ink);
-      border: 2px solid var(--ink);
-      border-radius: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 14px; padding: 12px 18px;
+      background: var(--ink); border: 2px solid var(--ink); border-radius: 12px;
     }
-    .hensachi-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--yellow);
-    }
+    .hensachi-label { font-size: 13px; font-weight: 700; color: var(--yellow); }
     .hensachi-num {
       font-family: 'Dela Gothic One', sans-serif;
-      font-size: 36px;
-      color: var(--yellow);
-      line-height: 1;
+      font-size: 36px; color: var(--yellow); line-height: 1;
     }
-
-    /* ---- stats bar ---- */
+    /* stats */
     .stats {
-      max-width: 480px;
-      margin: 0 auto 28px;
-      background: var(--card);
-      border: var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px 24px;
+      max-width: 480px; margin: 0 auto 28px;
+      background: var(--card); border: var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 24px;
       animation: popIn .55s .08s cubic-bezier(.34,1.56,.64,1) both;
     }
-    .stats h2 {
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 16px;
-      margin-bottom: 16px;
-    }
-    .stat-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .stat-label {
-      font-size: 12px;
-      font-weight: 700;
-      width: 60px;
-      flex-shrink: 0;
-    }
+    .stats h2 { font-family: 'Dela Gothic One', sans-serif; font-size: 16px; margin-bottom: 16px; }
+    .stat-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .stat-label { font-size: 12px; font-weight: 700; width: 60px; flex-shrink: 0; }
     .stat-track {
-      flex: 1;
-      height: 14px;
-      background: #eee;
-      border: 2px solid var(--ink);
-      border-radius: 99px;
-      overflow: hidden;
+      flex: 1; height: 14px; background: #eee;
+      border: 2px solid var(--ink); border-radius: 99px; overflow: hidden;
     }
     .stat-fill {
-      height: 100%;
-      border-radius: 99px;
+      height: 100%; border-radius: 99px; width: 0;
       transition: width .8s cubic-bezier(.34,1.2,.64,1);
-      width: 0;
     }
-    .stat-val {
-      font-size: 12px;
-      font-weight: 700;
-      width: 34px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    /* ---- share ---- */
+    .stat-val { font-size: 12px; font-weight: 700; width: 34px; text-align: right; flex-shrink: 0; }
+    /* share */
     .share-section {
-      max-width: 480px;
-      margin: 0 auto 28px;
+      max-width: 480px; margin: 0 auto 28px;
       animation: popIn .6s .16s cubic-bezier(.34,1.56,.64,1) both;
     }
     .share-section h2 {
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 16px;
-      text-align: center;
-      margin-bottom: 14px;
+      font-family: 'Dela Gothic One', sans-serif; font-size: 16px;
+      text-align: center; margin-bottom: 14px;
     }
-    .share-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .share-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 13px;
-      padding: 10px 22px;
-      border: var(--border);
-      border-radius: 99px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--ink);
-      transition: transform .1s, box-shadow .1s;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Dela Gothic One', sans-serif; font-size: 13px;
+      padding: 10px 22px; border: var(--border); border-radius: 99px;
+      box-shadow: var(--shadow); cursor: pointer; text-decoration: none;
+      color: var(--ink); transition: transform .1s, box-shadow .1s;
     }
-    .share-btn:active {
-      transform: translate(3px, 3px);
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-    .share-btn.x-btn   { background: #1A1A2E; color: #fff; }
+    .share-btn:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--ink); }
+    .share-btn.x-btn    { background: #1A1A2E; color: #fff; }
     .share-btn.line-btn { background: #06C755; }
     .share-btn.copy-btn { background: var(--yellow); }
-
-    /* ---- retry ---- */
+    .share-btn.insta-btn {
+      background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      color: #fff;
+    }
+    /* retry */
     .retry-wrap {
       text-align: center;
       animation: popIn .65s .22s cubic-bezier(.34,1.56,.64,1) both;
     }
     .retry-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Dela Gothic One', sans-serif;
-      font-size: 15px;
-      padding: 14px 36px;
-      background: var(--pink);
-      color: #fff;
-      border: var(--border);
-      border-radius: 99px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Dela Gothic One', sans-serif; font-size: 15px;
+      padding: 14px 36px; background: var(--pink); color: #fff;
+      border: var(--border); border-radius: 99px; box-shadow: var(--shadow);
+      cursor: pointer; text-decoration: none;
       transition: transform .1s, box-shadow .1s;
     }
-    .retry-btn:active {
-      transform: translate(3px, 3px);
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    /* ---- confetti ---- */
-    .confetti-container {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 999;
-    }
-    .confetti-piece {
-      position: absolute;
-      width: 10px; height: 10px;
-      top: -10px;
-      animation: fall linear forwards;
-    }
-
-    /* ---- animations ---- */
+    .retry-btn:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--ink); }
+    /* confetti */
+    .confetti-container { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+    .confetti-piece { position:absolute; width:10px; height:10px; top:-10px; animation: fall linear forwards; }
+    /* animations */
     @keyframes popIn {
       from { opacity:0; transform: scale(.85) translateY(20px); }
-      to   { opacity:1; transform: scale(1) translateY(0); }
+      to   { opacity:1; transform: scale(1)   translateY(0); }
     }
     @keyframes float {
       0%,100% { transform: translateY(0); }
-      50%      { transform: translateY(-10px); }
+      50%     { transform: translateY(-10px); }
     }
-    @keyframes fall {
-      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-    }
-
-    /* ---- キャラ別アクセントカラー ---- */
-    .accent-チャレン  { color: #FF6BB5; }
-    .accent-フレア    { color: #FF8C42; }
-    .accent-ラッシュ  { color: #FF3B3B; }
-    .accent-ヨルミー  { color: #6B7FFF; }
-    .accent-ユラ      { color: #C97BFF; }
-    .accent-ヤミィ    { color: #5A3FA0; }
-    .accent-キュルン  { color: #FF9EC4; }
-    .accent-ポカリン  { color: #FFB800; }
-    .accent-ミナモ    { color: #4CBFFF; }
-    .accent-ツムリィ  { color: #7BC47B; }
-    .accent-ロギ      { color: #4CFFA0; }
-    .accent-ノート    { color: #A0C4FF; }
-    .accent-キョロリ  { color: #FF8C42; }
-    .accent-ワンダ    { color: #FF6BB5; }
-    .accent-ハコベ    { color: #C97BFF; }
-
-    .bg-チャレン  { background: #FFE0EE; }
-    .bg-フレア    { background: #FFE8D6; }
-    .bg-ラッシュ  { background: #FFD6D6; }
-    .bg-ヨルミー  { background: #D6DCFF; }
-    .bg-ユラ      { background: #EDD6FF; }
-    .bg-ヤミィ    { background: #D4CAEE; }
-    .bg-キュルン  { background: #FFD6E8; }
-    .bg-ポカリン  { background: #FFF0B3; }
-    .bg-ミナモ    { background: #D0EDFF; }
-    .bg-ツムリィ  { background: #D6EED6; }
-    .bg-ロギ      { background: #C8FFE4; }
-    .bg-ノート    { background: #D6E8FF; }
-    .bg-キョロリ  { background: #FFE8D6; }
-    .bg-ワンダ    { background: #FFE0EE; }
-    .bg-ハコベ    { background: #EDD6FF; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity:0; } }
+    /* キャラ別アクセントカラー */
+    .accent-チャレン { color:#FF6BB5; } .accent-フレア   { color:#FF8C42; }
+    .accent-ラッシュ { color:#FF3B3B; } .accent-ヨルミー { color:#6B7FFF; }
+    .accent-ユラ    { color:#C97BFF; } .accent-ヤミィ   { color:#5A3FA0; }
+    .accent-キュルン { color:#FF9EC4; } .accent-ポカリン { color:#FFB800; }
+    .accent-ミナモ  { color:#4CBFFF; } .accent-ツムリィ { color:#7BC47B; }
+    .accent-ロギ    { color:#4CFFA0; } .accent-ノート   { color:#A0C4FF; }
+    .accent-キョロリ { color:#FF8C42; } .accent-ワンダ   { color:#FF6BB5; }
+    .accent-ハコベ  { color:#C97BFF; }
+    .bg-チャレン { background:#FFE0EE; } .bg-フレア   { background:#FFE8D6; }
+    .bg-ラッシュ { background:#FFD6D6; } .bg-ヨルミー { background:#D6DCFF; }
+    .bg-ユラ    { background:#EDD6FF; } .bg-ヤミィ   { background:#D4CAEE; }
+    .bg-キュルン { background:#FFD6E8; } .bg-ポカリン { background:#FFF0B3; }
+    .bg-ミナモ  { background:#D0EDFF; } .bg-ツムリィ { background:#D6EED6; }
+    .bg-ロギ    { background:#C8FFE4; } .bg-ノート   { background:#D6E8FF; }
+    .bg-キョロリ { background:#FFE8D6; } .bg-ワンダ   { background:#FFE0EE; }
+    .bg-ハコベ  { background:#EDD6FF; }
   </style>
 </head>
 <body>
@@ -380,25 +215,20 @@
   <h1>あなたは<br>このキャラ！</h1>
 </div>
 
-<!-- メインカード -->
 <div class="result-card" id="result-card">
   <div class="card-top" id="card-top">
     <span class="type-badge" id="type-badge">タイプ</span>
     <span class="chara-type-label">診断タイプ</span>
   </div>
-
   <div class="card-img" id="card-img">
-    <!-- 画像が設定されている場合は img、なければ絵文字プレースホルダー -->
     <img id="chara-img" src="chara.png" alt="キャラクター画像"
          onerror="this.style.display='none'; document.getElementById('chara-emoji').style.display='flex';">
     <div class="img-placeholder" id="chara-emoji" style="display:none;">🌟</div>
   </div>
-
   <div class="card-body">
     <div class="chara-name" id="chara-name">???</div>
     <div class="chara-type" id="chara-type">タイプ読み込み中...</div>
     <div class="chara-desc" id="chara-desc">診断結果を読み込んでいます...</div>
-
     <div class="hensachi-wrap">
       <span class="hensachi-label">📊 あなたの人生偏差値</span>
       <span class="hensachi-num" id="hensachi-num">--</span>
@@ -406,7 +236,6 @@
   </div>
 </div>
 
-<!-- スコアバー -->
 <div class="stats">
   <h2>📊 あなたのスコア</h2>
   <div class="stat-row">
@@ -436,7 +265,6 @@
   </div>
 </div>
 
-<!-- シェアボタン -->
 <div class="share-section">
   <h2>🎉 シェアしよう！</h2>
   <div class="share-buttons">
@@ -451,118 +279,54 @@
     <button class="share-btn copy-btn" id="copy-btn" onclick="copyResult()">
       📋 コピー
     </button>
+    <button class="share-btn insta-btn" id="share-insta" onclick="shareInstagram()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.645-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      ストーリーでシェア
+    </button>
   </div>
 </div>
 
-<!-- もう一度ボタン -->
 <div class="retry-wrap">
-  <a class="retry-btn" href="question1.html">
-    🔄 もう一度診断する
-  </a>
+  <a class="retry-btn" href="index.html">🔄 もう一度診断する</a>
 </div>
 
 <script src="script.js"></script>
 <script>
-  /* ================================================
-     キャラクターごとのデータ
-     ※ 画像・説明文をあとで各キャラ用に差し替えてください
-  ================================================ */
   const CHARA_DATA = {
-    "チャレン": {
-      img:  "images/08.png",   // ← あとでキャラ専用画像に変更
-      desc: "いつだってまっすぐ前を向く、生まれながらの主人公！困難にぶつかるほど燃えるタイプで、周りを自然と引っ張っていく存在。失敗を恐れず、挑戦し続けるその姿がみんなの憧れ！",
-      emoji: "⚡"
-    },
-    "フレア": {
-      img:  "images/09.png",
-      desc: "感情の炎が一瞬で爆発！直感と勢いで突き進む衝動型。じっくり考えるより先に体が動いちゃうけど、その情熱こそが最大の武器。熱量だけは誰にも負けない！",
-      emoji: "🔥"
-    },
-    "ラッシュ": {
-      img:  "images/05.png",
-      desc: "止まれない、止められない！エネルギーが有り余ってて、気づいたら全力疾走してることも。時に空回りするけど、その突破力は本物。自分でも予測不能な暴走がクセになる。",
-      emoji: "💥"
-    },
-    "ヨルミー": {
-      img:  "images/03.png",
-      desc: "夜が一番似合う、感受性豊かな夜型人間。静かな時間に深く考え、感じるものを大切にするタイプ。昼より夜、にぎやかさより静寂。そんなあなたの世界には独特の美しさがある。",
-      emoji: "🌙"
-    },
-    "ユラ": {
-      img:  "images/06.png",
-      desc: "感情がゆらゆら揺れる、豊かな心の持ち主。喜怒哀楽がダイレクトに伝わってくるから、一緒にいると感情移入しすぎることも。その繊細さが、誰よりも人の気持ちをわかる力になってる！",
-      emoji: "🌊"
-    },
-    "ヤミィ": {
-      img:  "images/14.png",
-      desc: "深い闇を静かに抱えながら、それでも前を向いてる強さがある。見た目はクールでも、内側には激しい感情の嵐。一人で抱え込みがちだけど、その深さこそがあなたの魅力。",
-      emoji: "🖤"
-    },
-    "キュルン": {
-      img:  "images/07.png",
-      desc: "気づいたら周りに人が集まってくる、天然の愛され体質！無意識に場を和ませて、みんなをほっこりさせる癒し系。甘えるのも甘やかすのも得意で、いつも誰かの「推し」になってる！",
-      emoji: "🍭"
-    },
-    "ポカリン": {
-      img:  "images/05.png",
-      desc: "どこにいてもその場の空気を明るくしちゃう陽キャの王道！コミュ力バツグンで初対面でもすぐ打ち解けられる。笑顔が武器で、友達の数は多分数えきれない。エネルギーが無限！",
-      emoji: "☀️"
-    },
-    "ミナモ": {
-      img:  "images/04.png",
-      desc: "空気を読む天才！場の流れを瞬時に察知して、自然と最適な立ち位置を取れる。でしゃばりすぎず、引きすぎず。そのバランス感覚こそがあなたのすごいところ。縁の下の力持ち系！",
-      emoji: "💧"
-    },
-    "ツムリィ": {
-      img:  "images/13.png",
-      desc: "物事をとことん深く考える、生粋の考察タイプ。表面だけじゃなく、その奥の奥まで見通そうとするから、気づいたら頭の中でひとり研究発表が始まってることも。分析力はピカイチ！",
-      emoji: "🔍"
-    },
-    "ロギ": {
-      img:  "images/10.png",
-      desc: "感情より論理、直感より根拠。データと理屈で動く合理主義者。無駄を嫌い、最短ルートを即座に計算できる。クールに見えるけど、実は正しいことへの強いこだわりを持ってる。",
-      emoji: "📐"
-    },
-    "ノート": {
-      img:  "images/12.png",
-      desc: "見たこと、感じたこと、考えたことを書き残さずにはいられない記録者。記憶より記録、感情より言語化。あなたの残してきたログが、いつか誰かの大切な地図になる。",
-      emoji: "📓"
-    },
-    "キョロリ": {
-      img:  "images/11.png",
-      desc: "世界のすべてが気になって仕方ない、好奇心のかたまり！あっちにもこっちにも興味が飛んで、気づいたら知識が雑多に積み上がってる。その「なんで？」が止まらないのが最大の強み！",
-      emoji: "👀"
-    },
-    "ワンダ": {
-      img:  "images/15.png",
-      desc: "未知の世界へ飛び込むことが何より好きな冒険家！地図のない道を楽しみながら進んでいける胆力の持ち主。新しい出会い、景色、経験…ぜんぶがあなたの燃料になってる！",
-      emoji: "🗺️"
-    },
-    "ハコベ": {
-      img:  "images/01.png",
-      desc: "好きなものをひたすら集め、丁寧にコレクションしていく収集家。量より質、広さより深さ。こだわりのコレクションには確かな審美眼が光ってる。その情熱、本物のマニアの証！",
-      emoji: "📦"
-    },
+    "チャレン": { img:"images/08.png", desc:"いつだってまっすぐ前を向く、生まれながらの主人公！困難にぶつかるほど燃えるタイプで、周りを自然と引っ張っていく存在。失敗を恐れず、挑戦し続けるその姿がみんなの憧れ！", emoji:"⚡" },
+    "フレア":   { img:"images/09.png", desc:"感情の炎が一瞬で爆発！直感と勢いで突き進む衝動型。じっくり考えるより先に体が動いちゃうけど、その情熱こそが最大の武器。熱量だけは誰にも負けない！", emoji:"🔥" },
+    "ラッシュ": { img:"images/05.png", desc:"止まれない、止められない！エネルギーが有り余ってて、気づいたら全力疾走してることも。時に空回りするけど、その突破力は本物。自分でも予測不能な暴走がクセになる。", emoji:"💥" },
+    "ヨルミー": { img:"images/03.png", desc:"夜が一番似合う、感受性豊かな夜型人間。静かな時間に深く考え、感じるものを大切にするタイプ。昼より夜、にぎやかさより静寂。そんなあなたの世界には独特の美しさがある。", emoji:"🌙" },
+    "ユラ":    { img:"images/06.png", desc:"感情がゆらゆら揺れる、豊かな心の持ち主。喜怒哀楽がダイレクトに伝わってくるから、一緒にいると感情移入しすぎることも。その繊細さが、誰よりも人の気持ちをわかる力になってる！", emoji:"🌊" },
+    "ヤミィ":  { img:"images/14.png", desc:"深い闇を静かに抱えながら、それでも前を向いてる強さがある。見た目はクールでも、内側には激しい感情の嵐。一人で抱え込みがちだけど、その深さこそがあなたの魅力。", emoji:"🖤" },
+    "キュルン": { img:"images/07.png", desc:"気づいたら周りに人が集まってくる、天然の愛され体質！無意識に場を和ませて、みんなをほっこりさせる癒し系。甘えるのも甘やかすのも得意で、いつも誰かの「推し」になってる！", emoji:"🍭" },
+    "ポカリン": { img:"images/05.png", desc:"どこにいてもその場の空気を明るくしちゃう陽キャの王道！コミュ力バツグンで初対面でもすぐ打ち解けられる。笑顔が武器で、友達の数は多分数えきれない。エネルギーが無限！", emoji:"☀️" },
+    "ミナモ":  { img:"images/04.png", desc:"空気を読む天才！場の流れを瞬時に察知して、自然と最適な立ち位置を取れる。でしゃばりすぎず、引きすぎず。そのバランス感覚こそがあなたのすごいところ。縁の下の力持ち系！", emoji:"💧" },
+    "ツムリィ": { img:"images/13.png", desc:"物事をとことん深く考える、生粋の考察タイプ。表面だけじゃなく、その奥の奥まで見通そうとするから、気づいたら頭の中でひとり研究発表が始まってることも。分析力はピカイチ！", emoji:"🔍" },
+    "ロギ":    { img:"images/10.png", desc:"感情より論理、直感より根拠。データと理屈で動く合理主義者。無駄を嫌い、最短ルートを即座に計算できる。クールに見えるけど、実は正しいことへの強いこだわりを持ってる。", emoji:"📐" },
+    "ノート":  { img:"images/12.png", desc:"見たこと、感じたこと、考えたことを書き残さずにはいられない記録者。記憶より記録、感情より言語化。あなたの残してきたログが、いつか誰かの大切な地図になる。", emoji:"📓" },
+    "キョロリ": { img:"images/11.png", desc:"世界のすべてが気になって仕方ない、好奇心のかたまり！あっちにもこっちにも興味が飛んで、気づいたら知識が雑多に積み上がってる。その「なんで？」が止まらないのが最大の強み！", emoji:"👀" },
+    "ワンダ":  { img:"images/15.png", desc:"未知の世界へ飛び込むことが何より好きな冒険家！地図のない道を楽しみながら進んでいける胆力の持ち主。新しい出会い、景色、経験…ぜんぶがあなたの燃料になってる！", emoji:"🗺️" },
+    "ハコベ":  { img:"images/01.png", desc:"好きなものをひたすら集め、丁寧にコレクションしていく収集家。量より質、広さより深さ。こだわりのコレクションには確かな審美眼が光ってる。その情熱、本物のマニアの証！", emoji:"📦" },
   };
 
-  /* ================================================
-     スコアをバーに表示（最大50点を100%として計算）
-  ================================================ */
+  // スコアバー（-50〜+50の範囲を0〜100%に変換）
   function renderBar(id, valId, score) {
     const MAX = 50;
     const pct = Math.max(0, Math.min(100, ((score + MAX) / (MAX * 2)) * 100));
-    setTimeout(() => {
-      document.getElementById(id).style.width = pct + "%";
-    }, 200);
     document.getElementById(valId).textContent = score;
+    // DOMが描画された後にwidthをセットしてトランジションを発火させる
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(id).style.width = pct + "%";
+      });
+    });
   }
 
-  /* ================================================
-     コピー機能
-  ================================================ */
   function copyResult() {
     const result = diagnoseCharacter();
-    const text = `🎉 キャラ診断結果 🎉\n私は「${result.name}」（${result.type}）でした！\nあなたも試してみて！ → [URL]`;
+    const h = calcHensachi();
+    const text = `🎉 STATUS診断結果 🎉\n私は「${result.name}」（${result.type}）\n人生偏差値: ${h}\nあなたも試してみて！ → ${location.href}`;
     navigator.clipboard.writeText(text).then(() => {
       const btn = document.getElementById('copy-btn');
       btn.textContent = '✅ コピーしました！';
@@ -570,9 +334,19 @@
     });
   }
 
-  /* ================================================
-     コンフェッティ
-  ================================================ */
+  function shareInstagram() {
+    const result = diagnoseCharacter();
+    const h = calcHensachi();
+    const text = `私は「${result.name}」（${result.type}）\n人生偏差値: ${h}`;
+    const url = `instagram-stories://share?backgroundTopColor=%23FFE54C&backgroundBottomColor=%23FF6BB5&caption=${encodeURIComponent(text)}`;
+    window.location.href = url;
+    setTimeout(() => {
+      if (document.visibilityState !== 'hidden') {
+        alert('インスタアプリが見つかりませんでした。アプリからお試しください！');
+      }
+    }, 1500);
+  }
+
   function launchConfetti() {
     const colors = ['#FFE54C','#FF6BB5','#4CC9FF','#4CFFA0','#C97BFF','#FF8C42'];
     const shapes = ['◆','★','●','▲','♥'];
@@ -591,14 +365,9 @@
     setTimeout(() => { container.innerHTML = ''; }, 4000);
   }
 
-  /* ================================================
-     メイン：診断結果を表示
-  ================================================ */
   window.addEventListener('DOMContentLoaded', () => {
     const result = diagnoseCharacter();
-    const data = CHARA_DATA[result.name] || {
-      img: "chara.png", desc: "謎に包まれたキャラクター…！", emoji: "❓"
-    };
+    const data = CHARA_DATA[result.name] || { img:"chara.png", desc:"謎のキャラクター！", emoji:"❓" };
 
     // キャラ名・タイプ
     const nameEl = document.getElementById('chara-name');
@@ -608,8 +377,6 @@
     document.getElementById('chara-type').textContent = result.type;
     document.getElementById('type-badge').textContent = result.type;
     document.getElementById('chara-desc').textContent = data.desc;
-
-    // カード上部の背景色
     document.getElementById('card-top').className = 'card-top bg-' + result.name;
 
     // 画像
@@ -617,28 +384,27 @@
     img.src = data.img;
     img.alt = result.name;
 
-    // スコアバー
+    // 偏差値
+    document.getElementById('hensachi-num').textContent = calcHensachi();
+
+    // スコアバー（requestAnimationFrameで確実にトランジション発火）
     renderBar('bar-speed', 'val-speed', speed);
     renderBar('bar-mental', 'val-mental', mental);
     renderBar('bar-comm',   'val-comm',  communication);
     renderBar('bar-intel',  'val-intel', intelligence);
     renderBar('bar-exp',    'val-exp',   experience);
 
-    // シェアテキスト生成
+    // シェアURL
     const shareText = encodeURIComponent(
-      `🎉 キャラ診断結果！\n私は「${result.name}」（${result.type}）でした！\nあなたも試してみて！`
+      `🎉 STATUS診断！\n私は「${result.name}」（${result.type}）\n人生偏差値: ${calcHensachi()}\nあなたも試してみて！`
     );
     const shareUrl = encodeURIComponent(location.href);
-
     document.getElementById('share-x').href =
       `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     document.getElementById('share-line').href =
       `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${shareText}`;
 
-    // 偏差値
-    document.getElementById("hensachi-num").textContent = calcHensachi();
-
-    // コンフェッティ🎊
+    // コンフェッティ
     launchConfetti();
   });
 </script>
