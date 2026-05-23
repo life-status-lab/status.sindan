@@ -27,8 +27,6 @@
       padding:4px 14px; border-radius:99px; margin-bottom:10px;
     }
     .page-header h1{font-family:'Dela Gothic One',sans-serif;font-size:clamp(28px,7vw,48px);line-height:1.1;}
-
-    /* result card */
     .result-card{
       max-width:480px;margin:0 auto 28px;background:var(--card);
       border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);
@@ -38,13 +36,8 @@
       background:var(--yellow);border-bottom:var(--border);
       padding:18px 24px 14px;display:flex;align-items:center;gap:10px;
     }
-    .type-badge{
-      background:var(--ink);color:var(--yellow);font-size:12px;font-weight:700;
-      padding:3px 12px;border-radius:99px;white-space:nowrap;
-    }
+    .type-badge{background:var(--ink);color:var(--yellow);font-size:12px;font-weight:700;padding:3px 12px;border-radius:99px;white-space:nowrap;}
     .card-top .chara-type-label{font-size:13px;font-weight:700;opacity:.6;}
-
-    /* ---- キャラ画像エリア ---- */
     .card-img{
       border-bottom:var(--border);
       background:linear-gradient(135deg,#ffe0f0 0%,#e0f4ff 100%);
@@ -53,71 +46,40 @@
     }
     .card-img::before{content:'';position:absolute;width:200px;height:200px;background:var(--yellow);border-radius:50%;opacity:.25;top:-60px;right:-40px;}
     .card-img::after{content:'';position:absolute;width:120px;height:120px;background:var(--pink);border-radius:50%;opacity:.18;bottom:-30px;left:-20px;}
-
-    /* 楕円の影（浮いてる感） */
     .shadow-ellipse{
       position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-      width:150px;height:22px;
-      background:rgba(0,0,0,.12);border-radius:50%;filter:blur(8px);
+      width:150px;height:22px;background:rgba(0,0,0,.12);border-radius:50%;filter:blur(8px);
       z-index:0;animation:shadowPulse 3s ease-in-out infinite;
     }
-
-    /* キャラ本体 */
     .card-img img{
-      width:240px;height:240px;object-fit:contain;
-      position:relative;z-index:1;
+      width:240px;height:240px;object-fit:contain;position:relative;z-index:1;
       filter:drop-shadow(0 28px 18px rgba(0,0,0,.2)) drop-shadow(0 4px 6px rgba(0,0,0,.1));
       animation:charFloat 3s ease-in-out infinite, charEntrance .7s cubic-bezier(.34,1.56,.64,1) both;
     }
-
-    /* キラキラ */
-    .sparkle{
-      position:absolute;pointer-events:none;
-      animation:sparklePop linear forwards;z-index:2;
-    }
-
+    .sparkle{position:absolute;pointer-events:none;animation:sparklePop linear forwards;z-index:2;}
     .card-img .img-placeholder{
       width:160px;height:160px;border:3px dashed #ccc;border-radius:50%;
       display:flex;align-items:center;justify-content:center;
       font-size:48px;position:relative;z-index:1;animation:charFloat 3s ease-in-out infinite;
     }
-
     .card-body{padding:24px;}
     .chara-name{font-family:'Dela Gothic One',sans-serif;font-size:clamp(36px,9vw,54px);line-height:1;margin-bottom:6px;}
     .chara-type{font-size:15px;font-weight:700;color:var(--pink);margin-bottom:12px;}
-    .chara-catchcopy{
-      font-size:13px;font-weight:700;color:#666;
-      margin-bottom:16px;line-height:1.6;
-      border-left:3px solid var(--pink);padding-left:10px;
-    }
-    .chara-desc{
-      font-size:14px;line-height:1.85;color:#444;
-      background:var(--bg);border:2px solid var(--ink);
-      border-radius:12px;padding:14px 16px;margin-bottom:14px;
-    }
-
-    /* 偏差値 */
+    .chara-catchcopy{font-size:13px;font-weight:700;color:#666;margin-bottom:16px;line-height:1.6;border-left:3px solid var(--pink);padding-left:10px;}
+    .chara-desc{font-size:14px;line-height:1.85;color:#444;background:var(--bg);border:2px solid var(--ink);border-radius:12px;padding:14px 16px;margin-bottom:14px;}
     .hensachi-wrap{
       display:flex;align-items:center;justify-content:space-between;
-      padding:12px 18px;background:var(--ink);border:2px solid var(--ink);border-radius:12px;
-      margin-bottom:14px;
+      padding:12px 18px;background:var(--ink);border:2px solid var(--ink);border-radius:12px;margin-bottom:14px;
     }
-    .hensachi-left{}
     .hensachi-label{font-size:13px;font-weight:700;color:var(--yellow);display:block;}
     .hensachi-rank{font-size:11px;color:#aaa;margin-top:2px;}
+    .hensachi-source{font-size:10px;color:#666;margin-top:2px;}
     .hensachi-right{text-align:right;}
     .hensachi-num{font-family:'Dela Gothic One',sans-serif;font-size:40px;color:var(--yellow);line-height:1;}
     .hensachi-up{font-size:11px;color:#aaa;margin-top:4px;}
-
-    /* 弱点 */
-    .weakness-wrap{
-      background:#FFF0F5;border:2px solid var(--pink);border-radius:12px;
-      padding:12px 16px;margin-bottom:14px;
-    }
+    .weakness-wrap{background:#FFF0F5;border:2px solid var(--pink);border-radius:12px;padding:12px 16px;margin-bottom:14px;}
     .weakness-title{font-size:11px;font-weight:700;color:var(--pink);margin-bottom:6px;}
     .weakness-text{font-size:13px;font-weight:700;line-height:1.6;color:var(--ink);}
-
-    /* 相性 */
     .compat-section{
       max-width:480px;margin:0 auto 28px;background:var(--card);
       border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);
@@ -133,8 +95,6 @@
     .compat-card.bad .compat-badge{background:var(--pink);color:#fff;}
     .compat-name{font-family:'Dela Gothic One',sans-serif;font-size:20px;margin-bottom:4px;}
     .compat-sub{font-size:11px;color:#888;line-height:1.5;}
-
-    /* stats */
     .stats{
       max-width:480px;margin:0 auto 28px;background:var(--card);
       border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;
@@ -146,8 +106,6 @@
     .stat-track{flex:1;height:14px;background:#eee;border:2px solid var(--ink);border-radius:99px;overflow:hidden;}
     .stat-fill{height:100%;border-radius:99px;width:0;transition:width .8s cubic-bezier(.34,1.2,.64,1);}
     .stat-val{font-size:12px;font-weight:700;width:34px;text-align:right;flex-shrink:0;}
-
-    /* 偏差値アップ術 */
     .tips-section{
       max-width:480px;margin:0 auto 28px;background:var(--card);
       border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;
@@ -157,11 +115,8 @@
     .tip-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;padding-bottom:12px;border-bottom:1px dashed #eee;}
     .tip-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
     .tip-icon{font-size:22px;flex-shrink:0;line-height:1.2;}
-    .tip-body{}
     .tip-stat{font-size:10px;font-weight:700;color:var(--pink);margin-bottom:2px;}
     .tip-text{font-size:13px;line-height:1.6;color:#333;}
-
-    /* share */
     .share-section{max-width:480px;margin:0 auto 28px;animation:popIn .6s .16s cubic-bezier(.34,1.56,.64,1) both;}
     .share-section h2{font-family:'Dela Gothic One',sans-serif;font-size:16px;text-align:center;margin-bottom:14px;}
     .share-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
@@ -177,8 +132,6 @@
     .share-btn.line-btn{background:#06C755;}
     .share-btn.copy-btn{background:var(--yellow);}
     .share-btn.insta-btn{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;}
-
-    /* retry */
     .retry-wrap{text-align:center;animation:popIn .65s .22s cubic-bezier(.34,1.56,.64,1) both;}
     .retry-btn{
       display:inline-flex;align-items:center;gap:8px;
@@ -188,19 +141,14 @@
       cursor:pointer;text-decoration:none;transition:transform .1s,box-shadow .1s;
     }
     .retry-btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink);}
-
-    /* confetti */
     .confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;}
     .confetti-piece{position:absolute;width:10px;height:10px;top:-10px;animation:fall linear forwards;}
-
-    /* ---- アニメーション ---- */
     @keyframes popIn{from{opacity:0;transform:scale(.85) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
     @keyframes charFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
     @keyframes charEntrance{from{opacity:0;transform:scale(.6) translateY(30px);}to{opacity:1;transform:scale(1) translateY(0);}}
     @keyframes shadowPulse{0%,100%{transform:translateX(-50%) scaleX(1);opacity:.7;}50%{transform:translateX(-50%) scaleX(.75);opacity:.3;}}
     @keyframes sparklePop{0%{opacity:1;transform:translate(0,0) scale(1);}100%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(0);}}
     @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
-
     .accent-チャレン{color:#FF6BB5;} .accent-フレア{color:#FF8C42;}
     .accent-ラッシュ{color:#FF3B3B;} .accent-ヨルミー{color:#6B7FFF;}
     .accent-ユラ{color:#C97BFF;}    .accent-ヤミィ{color:#5A3FA0;}
@@ -220,14 +168,11 @@
   </style>
 </head>
 <body>
-
 <div class="confetti-container" id="confetti"></div>
-
 <div class="page-header">
   <div class="label">✦ RESULT ✦</div>
   <h1>あなたは<br>このキャラ！</h1>
 </div>
-
 <div class="result-card" id="result-card">
   <div class="card-top" id="card-top">
     <span class="type-badge" id="type-badge">タイプ</span>
@@ -235,7 +180,7 @@
   </div>
   <div class="card-img" id="card-img">
     <div class="shadow-ellipse"></div>
-    <img id="chara-img" src="chara.png" alt="キャラクター画像"
+    <img id="chara-img" src="" alt="キャラクター画像"
          onerror="this.style.display='none';document.getElementById('chara-emoji').style.display='flex';">
     <div class="img-placeholder" id="chara-emoji" style="display:none;">🌟</div>
   </div>
@@ -248,6 +193,7 @@
       <div class="hensachi-left">
         <span class="hensachi-label">📊 人生偏差値</span>
         <span class="hensachi-rank" id="hensachi-rank">---</span>
+        <span class="hensachi-source" id="hensachi-source"></span>
       </div>
       <div class="hensachi-right">
         <div class="hensachi-num" id="hensachi-num">--</div>
@@ -260,7 +206,6 @@
     </div>
   </div>
 </div>
-
 <div class="compat-section">
   <h2>💫 あなたの相性</h2>
   <div class="compat-row">
@@ -276,7 +221,6 @@
     </div>
   </div>
 </div>
-
 <div class="stats">
   <h2>📊 あなたのスコア</h2>
   <div class="stat-row">
@@ -305,12 +249,10 @@
     <span class="stat-val" id="val-exp">0</span>
   </div>
 </div>
-
 <div class="tips-section">
   <h2>🚀 偏差値アップ術</h2>
   <div id="tips-list"></div>
 </div>
-
 <div class="share-section">
   <h2>🎉 シェアしよう！</h2>
   <div class="share-buttons">
@@ -329,7 +271,6 @@
     </button>
   </div>
 </div>
-
 <div class="retry-wrap">
   <a class="retry-btn" href="index.html">🔄 もう一度診断する</a>
 </div>
@@ -602,79 +543,88 @@ function launchSparkles() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  const result = diagnoseCharacter();
-  const data = CHARA_DATA[result.name] || {
-    img:"chara.png", emoji:"❓",
-    catchcopy:"謎めいた存在",
-    desc:"謎のキャラクター！",
-    good:"???", goodSub:"", bad:"???", badSub:""
-  };
+  // ① まず統計をGASから取得してから表示
+  loadStats().then(() => {
+    const result = diagnoseCharacter();
+    const data = CHARA_DATA[result.name] || {
+      img:"", emoji:"❓", catchcopy:"謎めいた存在", desc:"謎のキャラクター！",
+      good:"???", goodSub:"", bad:"???", badSub:""
+    };
 
-  const nameEl = document.getElementById('chara-name');
-  nameEl.textContent = result.name;
-  nameEl.className = 'chara-name accent-' + result.name;
-  document.getElementById('chara-type').textContent = result.type;
-  document.getElementById('type-badge').textContent = result.type;
-  document.getElementById('chara-catchcopy').textContent = data.catchcopy;
-  document.getElementById('chara-desc').textContent = data.desc;
-  document.getElementById('card-top').className = 'card-top bg-' + result.name;
+    // キャラ情報
+    const nameEl = document.getElementById('chara-name');
+    nameEl.textContent = result.name;
+    nameEl.className = 'chara-name accent-' + result.name;
+    document.getElementById('chara-type').textContent = result.type;
+    document.getElementById('type-badge').textContent = result.type;
+    document.getElementById('chara-catchcopy').textContent = data.catchcopy;
+    document.getElementById('chara-desc').textContent = data.desc;
+    document.getElementById('card-top').className = 'card-top bg-' + result.name;
 
-  const img = document.getElementById('chara-img');
-  img.src = data.img; img.alt = result.name;
+    // 画像（srcを空にしてからセット → onerrorリセット）
+    const img = document.getElementById('chara-img');
+    img.style.display = 'block';
+    document.getElementById('chara-emoji').style.display = 'none';
+    img.src = data.img;
+    img.alt = result.name;
 
-  const h = calcHensachi();
-  const rankData = getHensachiRank(h);
-  document.getElementById('hensachi-num').textContent = h;
-  document.getElementById('hensachi-rank').textContent = rankData.rank;
-  document.getElementById('hensachi-up').textContent = rankData.up;
+    // 偏差値（統計取得後に計算するので正確）
+    const h = calcHensachi();
+    const rankData = getHensachiRank(h);
+    document.getElementById('hensachi-num').textContent = h;
+    document.getElementById('hensachi-rank').textContent = rankData.rank;
+    document.getElementById('hensachi-up').textContent = rankData.up;
+    document.getElementById('hensachi-source').textContent =
+      statsSource === 'realdata' ? '実データで算出' : 'シミュレーションで算出';
 
-  document.getElementById('weakness-text').textContent =
-    getWeakness(speed, mental, communication, intelligence, experience);
+    // 弱点
+    document.getElementById('weakness-text').textContent =
+      getWeakness(speed, mental, communication, intelligence, experience);
 
-  document.getElementById('compat-good-name').textContent = data.good;
-  document.getElementById('compat-good-sub').textContent = data.goodSub;
-  document.getElementById('compat-bad-name').textContent = data.bad;
-  document.getElementById('compat-bad-sub').textContent = data.badSub;
+    // 相性
+    document.getElementById('compat-good-name').textContent = data.good;
+    document.getElementById('compat-good-sub').textContent = data.goodSub;
+    document.getElementById('compat-bad-name').textContent = data.bad;
+    document.getElementById('compat-bad-sub').textContent = data.badSub;
 
-  renderBar('bar-speed','val-speed', speed);
-  renderBar('bar-mental','val-mental', mental);
-  renderBar('bar-comm','val-comm', communication);
-  renderBar('bar-intel','val-intel', intelligence);
-  renderBar('bar-exp','val-exp', experience);
+    // スコアバー
+    renderBar('bar-speed','val-speed', speed);
+    renderBar('bar-mental','val-mental', mental);
+    renderBar('bar-comm','val-comm', communication);
+    renderBar('bar-intel','val-intel', intelligence);
+    renderBar('bar-exp','val-exp', experience);
 
-  document.getElementById('tips-list').innerHTML =
-    getTips(speed, mental, communication, intelligence, experience);
+    // 偏差値アップ術
+    document.getElementById('tips-list').innerHTML =
+      getTips(speed, mental, communication, intelligence, experience);
 
-  const shareText = encodeURIComponent(
-    `🎉 STATUS診断！\n私は「${result.name}」（${result.type}）\n人生偏差値: ${h}（${rankData.rank}）\nあなたも試して！`
-  );
-  const shareUrl = encodeURIComponent(location.href);
-  document.getElementById('share-x').href =
-    `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
-  document.getElementById('share-line').href =
-    `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${shareText}`;
+    // シェアURL
+    const shareText = encodeURIComponent(
+      `🎉 STATUS診断！\n私は「${result.name}」（${result.type}）\n人生偏差値: ${h}（${rankData.rank}）\nあなたも試して！`
+    );
+    const shareUrl = encodeURIComponent(location.href);
+    document.getElementById('share-x').href =
+      `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    document.getElementById('share-line').href =
+      `https://social-plugins.line.me/lineit/share?url=${shareUrl}&text=${shareText}`;
 
-  launchConfetti();
-  launchSparkles();
+    launchConfetti();
+    launchSparkles();
 
-  sendToGAS(result, h);
+    // ② 今回のスコアをGASに送信（表示後に実行）
+    sendToGAS(result, h);
+  });
 });
 
 function sendToGAS(result, hensachi) {
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxn8vsZSN6S_fOq8rHqmIbI6ZzoEPvqhtWlSYQPsICMyuBUUjpNA4sYWlFCeI6G-OYxCQ/exec';
   fetch(GAS_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      chara:    result.name,
-      type:     result.type,
-      hensachi: hensachi,
-      speed:    speed,
-      mental:   mental,
-      comm:     communication,
-      intel:    intelligence,
-      exp:      experience,
+      chara: result.name, type: result.type, hensachi: hensachi,
+      speed: speed, mental: mental, comm: communication,
+      intel: intelligence, exp: experience,
     })
   }).catch(() => {});
 }
