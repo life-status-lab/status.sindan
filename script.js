@@ -333,9 +333,9 @@ const CHARACTERS = [
     // speed高・mental高・intel高・exp高 → まっすぐな主人公
     name: "チャレン", type: "人生主人公界隈",
     conditions: [
-      { stat: "speed",        op: ">=", val: 8  },
-      { stat: "mental",       op: ">=", val: 5  },
-      { stat: "intelligence", op: ">=", val: 6  },
+      { stat: "speed",        op: ">=", val: 12  },
+      { stat: "mental",       op: ">=", val: 6  },
+      { stat: "intelligence", op: ">=", val: 7  },
       { stat: "experience",   op: ">=", val: 10 },
     ]
   },
